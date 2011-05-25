@@ -9,13 +9,13 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class AgenciaDB {
+public class UsuarioDB {
 	
 	private InitialContext ctx = null;
 	private DataSource ds = null;
 	private Connection cn = null;
 	
-	public AgenciaDB(){
+	public UsuarioDB(){
 		try {
 			ctx = new InitialContext();
 		    ds = (DataSource)ctx.lookup("java:MySqlDS");
@@ -37,39 +37,33 @@ public class AgenciaDB {
 			e.printStackTrace();
 		}
 	}
-	
-	public int guardar(Agencia a){
-		String sql = "INSERT INTO agencias (usuario, password, descripcion, habilitada) values (?, ?, ?, ?)";
+
+	public boolean existeUsuario(Usuario u){
+		String sql = "select * from usuarios where usuario = ? and password = ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int id = -1;
+		boolean e = false;
 		
 		try {
-			pstmt = cn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1, a.getUsu());
-			pstmt.setString(2, a.getPwd());
-			pstmt.setString(3, a.getdescripcion());
-			pstmt.setInt(4, 1);
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setString(1, u.getUsu());
+			pstmt.setString(2, u.getPwd());
 			
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
 			
-			rs = pstmt.getGeneratedKeys();
-			
-			if (rs.next()) {
-		        id = rs.getInt(1);
-		    }
+			while(rs.next()){
+				e = true;
+			}
 			
 			rs.close();
 			pstmt.close();
 			closeCn();
 			
-		} catch (SQLException e) {
+		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 		
-		return id;
+		return e;
 	}
-	
-
 }

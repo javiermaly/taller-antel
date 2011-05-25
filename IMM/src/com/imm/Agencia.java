@@ -1,6 +1,7 @@
 package com.imm;
 
 public class Agencia {
+	private int id;
 	private String usu;
 	private String pwd;
 	private String descripcion;
@@ -14,7 +15,7 @@ public class Agencia {
 		this.descripcion = descripcion;
 		this.habilitada = true;
 		
-		adb.guardar(this);
+		this.id = adb.guardar(this);
 	}
 
 	public String getUsu() {
