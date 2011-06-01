@@ -7,4 +7,9 @@ public class ManagerAgencia {
 		this.a = new Agencia(usu, pwd, descripcion);
 	}
 
+	
+	
+	public void validaAgencia(String usu, String pwd){
+		
+	}
 }

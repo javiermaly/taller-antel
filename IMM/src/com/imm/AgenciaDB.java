@@ -52,7 +52,7 @@ public class AgenciaDB {
 			pstmt.setInt(4, 1);
 			
 			pstmt.executeUpdate();
-			
+			System.out.println("guardado");
 			rs = pstmt.getGeneratedKeys();
 			
 			if (rs.next()) {

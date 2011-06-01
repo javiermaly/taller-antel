@@ -18,6 +18,10 @@ public class Agencia {
 		this.id = adb.guardar(this);
 	}
 
+	public Agencia() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getUsu() {
 		return usu;
 	}
