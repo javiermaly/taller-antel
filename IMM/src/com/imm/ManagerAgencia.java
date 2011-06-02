@@ -8,8 +8,8 @@ public class ManagerAgencia {
 	}
 
 	
-	
-	public void validaAgencia(String usu, String pwd){
-		
+	// FIXME - Terminar el metodo validaAgencia
+	public int validaAgencia(String usu, String pwd){
+		return 1;
 	}
 }
