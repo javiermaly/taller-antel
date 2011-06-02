@@ -29,4 +29,14 @@
     <servlet-name>TestLogin</servlet-name>
     <url-pattern>/TestLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestVentaTicket</display-name>
+    <servlet-name>TestVentaTicket</servlet-name>
+    <servlet-class>test.TestVentaTicket</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestVentaTicket</servlet-name>
+    <url-pattern>/TestVentaTicket</url-pattern>
+  </servlet-mapping>
 </web-app>

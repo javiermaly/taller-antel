@@ -1,21 +1,22 @@
 package com.imm;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-public class AgenciaDB {
+public class TicketDB {
 	
 	private InitialContext ctx = null;
 	private DataSource ds = null;
 	private Connection cn = null;
 	
-	public AgenciaDB(){
+	public TicketDB(){
 		try {
 			ctx = new InitialContext();
 		    ds = (DataSource)ctx.lookup("java:MySqlDS");
@@ -38,18 +39,19 @@ public class AgenciaDB {
 		}
 	}
 	
-	public int guardar(Agencia a){
-		String sql = "INSERT INTO agencias (usuario, password, descripcion, habilitada) values (?, ?, ?, ?)";
+	public int guardar(Ticket t){
+		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAgencia) values (?, ?, ?, sysdate(), ?, ?)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int id = -1;
 		
 		try {
 			pstmt = cn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1, a.getUsu());
-			pstmt.setString(2, a.getPwd());
-			pstmt.setString(3, a.getdescripcion());
-			pstmt.setInt(4, 1);
+			pstmt.setString(1, t.getMatricula());
+			pstmt.setDate(2, new java.sql.Date(t.getInicioEstacionamiento().getTime()));
+			pstmt.setInt(3, t.getDuracionEstacionamiento());
+			pstmt.setInt(4, t.getImporte());
+			pstmt.setInt(5, t.getIdAgencia());
 			
 			pstmt.executeUpdate();
 
@@ -58,6 +60,18 @@ public class AgenciaDB {
 			if (rs.next()) {
 		        id = rs.getInt(1);
 		    }
+			
+			if (id != -1) {
+				pstmt = cn.prepareStatement("select * from tickets where id = ?");
+				pstmt.setInt(1, id);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					t.setId(id);
+					t.setFecha(rs.getDate(5));
+			    }
+				
+			}
 			
 			rs.close();
 			pstmt.close();
@@ -70,6 +84,5 @@ public class AgenciaDB {
 		
 		return id;
 	}
-	
 
 }
