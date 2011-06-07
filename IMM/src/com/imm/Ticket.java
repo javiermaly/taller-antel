@@ -1,20 +1,21 @@
 package com.imm;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Ticket {
 	private int id;
 	private String matricula;
-	private Date inicioEstacionamiento;
+	private Calendar inicioEstacionamiento;
 	private int duracionEstacionamiento;
-	private Date fecha;
+	private Calendar fecha;
 	private int importe;
 	private int idAnulacion;
 	private int idAgencia;
 	
 	private TicketDB tdb = new TicketDB();
 	
-	public Ticket(String matricula, Date inicioEstacionamiento,
+	public Ticket(String matricula, Calendar inicioEstacionamiento,
 			int duracionEstacionamiento, int importe,
 			int idAgencia) {
 		
@@ -39,10 +40,10 @@ public class Ticket {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	public Date getInicioEstacionamiento() {
+	public Calendar getInicioEstacionamiento() {
 		return inicioEstacionamiento;
 	}
-	public void setInicioEstacionamiento(Date inicioEstacionamiento) {
+	public void setInicioEstacionamiento(Calendar inicioEstacionamiento) {
 		this.inicioEstacionamiento = inicioEstacionamiento;
 	}
 	public int getDuracionEstacionamiento() {
@@ -51,10 +52,10 @@ public class Ticket {
 	public void setDuracionEstacionamiento(int duracionEstacionamiento) {
 		this.duracionEstacionamiento = duracionEstacionamiento;
 	}
-	public Date getFecha() {
+	public Calendar getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 	public int getImporte() {

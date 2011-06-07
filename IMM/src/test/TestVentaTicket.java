@@ -31,7 +31,7 @@ public class TestVentaTicket extends HttpServlet {
 		Date dia = new Date();
 		
 		ManagerTicket mt = new ManagerTicket();
-		String str = mt.venta("usu", "pwd", "matricula", dia, 32);
+		//String str = mt.venta("usu", "pwd", "matricula", dia, 32);
 		
 		
 	}

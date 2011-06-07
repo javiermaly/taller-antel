@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -48,7 +50,7 @@ public class TicketDB {
 		try {
 			pstmt = cn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, t.getMatricula());
-			pstmt.setDate(2, new java.sql.Date(t.getInicioEstacionamiento().getTime()));
+			pstmt.setDate(2, (java.sql.Date) t.getInicioEstacionamiento().getTime());
 			pstmt.setInt(3, t.getDuracionEstacionamiento());
 			pstmt.setInt(4, t.getImporte());
 			pstmt.setInt(5, t.getIdAgencia());
@@ -68,7 +70,8 @@ public class TicketDB {
 				
 				if (rs.next()) {
 					t.setId(id);
-					t.setFecha(rs.getDate(5));
+					Calendar fecha = new GregorianCalendar(rs.getDate(5).getYear(), rs.getDate(5).getMonth(), rs.getDate(5).getDay());
+					t.setFecha(fecha);
 			    }
 				
 			}
