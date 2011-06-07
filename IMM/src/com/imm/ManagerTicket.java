@@ -1,12 +1,13 @@
 package com.imm;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class ManagerTicket {
 	private Ticket t;
 	private Tarifa tar;
 	
-	public String venta(String usu, String pwd, String matricula, Date inicio, int duracion){
+	public String venta(String usu, String pwd, String matricula, Calendar inicio, int duracion){
 		int agVal = -1;
 		int valorTicket = 0;
 		

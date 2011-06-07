@@ -9,6 +9,45 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+ 
+ 	<listener>
+		<listener-class>
+			org.apache.axis.transport.http.AxisHTTPSessionListener
+		</listener-class>
+	</listener>
+  
+	<!-- SERVICIOS AXIS  -->
+	<servlet>
+		<servlet-name>AxisServlet</servlet-name>
+		<servlet-class>
+			org.apache.axis.transport.http.AxisServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/servlet/AxisServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>*.jws</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<!-- SERVICIOS AXIS  -->
+  
+  <servlet>
+    <servlet-name>ws</servlet-name>
+    <servlet-class>com.imm.Ws</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ws</servlet-name>
+    <url-pattern>/Ws</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>TestDB</display-name>
@@ -38,5 +77,14 @@
   <servlet-mapping>
     <servlet-name>TestVentaTicket</servlet-name>
     <url-pattern>/TestVentaTicket</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>HelloWorld</display-name>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>org.jboss.samples.webservices.HelloWorld</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name>
+    <url-pattern>/HelloWorld</url-pattern>
   </servlet-mapping>
 </web-app>
