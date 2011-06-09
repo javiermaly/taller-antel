@@ -10,35 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
  
- 	<listener>
-		<listener-class>
-			org.apache.axis.transport.http.AxisHTTPSessionListener
-		</listener-class>
-	</listener>
-  
-	<!-- SERVICIOS AXIS  -->
-	<servlet>
-		<servlet-name>AxisServlet</servlet-name>
-		<servlet-class>
-			org.apache.axis.transport.http.AxisServlet
-		</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>AxisServlet</servlet-name>
-		<url-pattern>/servlet/AxisServlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>AxisServlet</servlet-name>
-		<url-pattern>*.jws</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>AxisServlet</servlet-name>
-		<url-pattern>/services/*</url-pattern>
-	</servlet-mapping>
-	<!-- SERVICIOS AXIS  -->
   
   <servlet>
     <servlet-name>ws</servlet-name>
