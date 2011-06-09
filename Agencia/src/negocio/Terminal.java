@@ -14,11 +14,13 @@ public class Terminal {
 	}
 */	
 	public Terminal getTerminal(String ip){
-		
-// DUDA: no debería operar sobre this???
-		
 		TerminalDB tdb = new TerminalDB ();
 		return tdb.getTerminal(ip); 
+	}
+	
+	public boolean guardar (){
+		TerminalDB tdb = new TerminalDB ();
+		return tdb.guardar(this);
 	}
 	
 	public String toString (){

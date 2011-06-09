@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Calendar;
 
 import manager.ManagerTerminal;
 import manager.ManagerTicket;
+import manager.ManagerUsuario;
 import negocio.Funciones;
 import negocio.Terminal;
 
@@ -24,7 +24,7 @@ public class Hilo extends Thread {
 
 	private ManagerTerminal mter;
 	private ManagerTicket mt;
-//	private ManagerUsuario mu;
+	private ManagerUsuario mu;
 
 /*
 	private String texto;
@@ -73,19 +73,11 @@ public class Hilo extends Thread {
 							respuesta = mt.venta(datos[1], Funciones.string2Calendar(datos[2], true), Integer.parseInt(datos[3]), ter);
 						}
 						else if (op == opLogin){
-							
+							mu = new ManagerUsuario ();
+							if (mu.alta(datos[1],datos[2], datos[3], datos[4]))
+								respuesta = "ok";
 						}
-						else {
-							// error
-							respuesta = "Error";
-						}
-						
-					}
-					
-					respuesta="Todo OK para la orden: "+mensaje;												
-				}else{		
-					//seguir=false;
-					respuesta="Error";
+					}												
 				}					
 				out.print(respuesta+"\r\n");		
 				out.flush();					
@@ -102,7 +94,7 @@ public class Hilo extends Thread {
 			System.out.println("Hilo - run - CLOSE SOCKET");			
 		}
 	}
-	
+/*	
 	private String obtenerComando (){
 		return "";
 	}
@@ -114,4 +106,5 @@ public class Hilo extends Thread {
 	private String getDatos (String texto){
 		return "";
 	}
+*/
 }
