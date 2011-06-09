@@ -12,7 +12,10 @@ public class ManagerTerminal {
 	}
 	
 	public boolean alta (String ip, String nombre){
-		return true;
+		ter = new Terminal ();
+		ter.setIp(ip);
+		ter.setNombre(nombre);
+		return ter.guardar();
 	}
 	
 	public boolean baja (String ip){
