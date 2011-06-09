@@ -43,14 +43,18 @@ public class TicketDB {
 	
 	public int guardar(Ticket t){
 		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAgencia) values (?, ?, ?, sysdate(), ?, ?)";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		PreparedStatement pstmt;
+		ResultSet rs;
 		int id = -1;
+		
+		System.out.println(t.getInicioEstacionamiento().getTime());
 		
 		try {
 			pstmt = cn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, t.getMatricula());
-			pstmt.setDate(2, (java.sql.Date) t.getInicioEstacionamiento().getTime());
+			//pstmt.setDate(2, (java.sql.Date) t.getInicioEstacionamiento().getTime());
+			java.sql.Date date = new java.sql.Date(t.getInicioEstacionamiento().getTimeInMillis());
+			pstmt.setDate(2, date);
 			pstmt.setInt(3, t.getDuracionEstacionamiento());
 			pstmt.setInt(4, t.getImporte());
 			pstmt.setInt(5, t.getIdAgencia());
@@ -80,7 +84,8 @@ public class TicketDB {
 			pstmt.close();
 			closeCn();
 			
-		} catch (SQLException e) {
+		} catch (SQLException e) {		
+			closeCn();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
