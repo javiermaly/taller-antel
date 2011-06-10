@@ -12,13 +12,13 @@ import com.imm.AgenciaDB;
 /**
  * Servlet implementation class TestDB
  */
-public class TestDB extends HttpServlet {
+public class TestAltaAgencia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestDB() {
+    public TestAltaAgencia() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class TestDB extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.print("Llamada al Servlet");
-		Agencia a = new Agencia("us4", "ps4", "des4");
+		Agencia a = new Agencia("us5", "ps5", "des5");
 		//AgenciaDB adb = new AgenciaDB();
 		//adb.insert();
 		

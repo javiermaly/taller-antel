@@ -21,13 +21,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>TestDB</display-name>
-    <servlet-name>TestDB</servlet-name>
-    <servlet-class>test.TestDB</servlet-class>
+    <display-name>TestAltaAgencia</display-name>
+    <servlet-name>TestAltaAgencia</servlet-name>
+    <servlet-class>test.TestAltaAgencia</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TestDB</servlet-name>
-    <url-pattern>/TestDB</url-pattern>
+    <servlet-name>TestAltaAgencia</servlet-name>
+    <url-pattern>/TestAltaAgencia</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -48,14 +48,5 @@
   <servlet-mapping>
     <servlet-name>TestVentaTicket</servlet-name>
     <url-pattern>/TestVentaTicket</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>HelloWorld</display-name>
-    <servlet-name>HelloWorld</servlet-name>
-    <servlet-class>org.jboss.samples.webservices.HelloWorld</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloWorld</servlet-name>
-    <url-pattern>/HelloWorld</url-pattern>
   </servlet-mapping>
 </web-app>

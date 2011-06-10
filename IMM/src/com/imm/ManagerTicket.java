@@ -8,6 +8,8 @@ public class ManagerTicket {
 	private Tarifa tar;
 	
 	public String venta(String usu, String pwd, String matricula, Calendar inicio, int duracion){
+		String ticketRespuesta = "";
+		String delimitador = ",";
 		int agVal = -1;
 		int valorTicket = 0;
 		
@@ -26,7 +28,14 @@ public class ManagerTicket {
 			
 		}
 		
-		
-		return "";
+		ticketRespuesta = t.getId() + delimitador
+			+ t.getMatricula() + delimitador
+			+ t.getInicioEstacionamiento().toString() + delimitador
+			+ t.getDuracionEstacionamiento() + delimitador
+			+ t.getFecha().toString() + delimitador
+			+ t.getImporte() + delimitador
+			+ t.getIdAnulacion() + delimitador;
+			
+		return ticketRespuesta;
 	}
 }
