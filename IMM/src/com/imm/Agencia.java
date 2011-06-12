@@ -16,6 +16,7 @@ public class Agencia {
 		this.habilitada = true;
 		
 		this.id = adb.guardar(this);
+		
 	}
 
 	public Agencia() {
@@ -53,6 +54,13 @@ public class Agencia {
 	public void setHabilitada(boolean habilitada) {
 		this.habilitada = habilitada;
 	}
+	public int getId(){
+		return id;
+	}
+	public void setId(int id){
+		this.id=id;
+	}
+	
 
 	
 }

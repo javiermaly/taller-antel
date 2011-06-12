@@ -31,7 +31,7 @@ public class TestLogin extends HttpServlet {
 		boolean e = false;
 		
 		ManagerUsuario mu = new ManagerUsuario();
-		e = mu.login("usuario", "con");
+		e = mu.login("3", "passwd");
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
