@@ -26,6 +26,7 @@ public class AgenciaDB {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 	}
 	
@@ -39,6 +40,7 @@ public class AgenciaDB {
 	}
 	
 	public int guardar(Agencia a){
+		
 		String sql = "INSERT INTO agencias (usuario, password, descripcion, habilitada) values (?, ?, ?, ?)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -69,6 +71,80 @@ public class AgenciaDB {
 		}
 		
 		return id;
+	}
+
+	
+	public Agencia getAgencia (int id){
+		String sql = "select * from agencias where id = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Agencia a= new Agencia();
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+					
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				a.setdescripcion(rs.getString(4));
+				a.setHabilitada(rs.getBoolean(5));
+				a.setPwd(rs.getString(3));
+				a.setUsu(rs.getString(2));
+			}
+			rs.close();
+			pstmt.close();
+			closeCn();
+			
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			//closeCn();
+		}
+		
+		return a;
+		
+		
+	}
+	
+	public boolean guardarAg(Agencia a){
+		
+		boolean guardada=false;
+		String sql = "update agencias set descripcion = ?, usuario = ? , password = ? , habilitada = ? where id = ?";
+		PreparedStatement pstmt = null;
+
+		System.out.println(sql);
+		
+		try {
+						
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setString(1, a.getdescripcion());
+			pstmt.setString(2, a.getUsu());
+			pstmt.setString(3, a.getPwd());
+			pstmt.setInt(4, 1);
+			pstmt.setInt(5, a.getId());
+				
+			System.out.println("EJECUTO EL UPDATE");
+			
+			pstmt.executeUpdate();
+			
+			guardada=true;
+			
+			pstmt.close();
+			//closeCn();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		
+			e.printStackTrace();
+			//closeCn();
+		}
+		
+		
+		return guardada;
+		
 	}
 	
 
