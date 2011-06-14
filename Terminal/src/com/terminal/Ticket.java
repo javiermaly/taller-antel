@@ -10,11 +10,11 @@ public class Ticket {
 	private String matricula;
 	private Calendar inicioEstacionamiento;
 	private int duracionEstacionamiento;
-	private int idVenta;
+	private String idVenta;
 	
 	
 	
-		
+	
 	public Ticket (){
 		
 	}
@@ -55,6 +55,14 @@ public class Ticket {
 		this.duracionEstacionamiento = duracionEstacionamiento;
 	}
 	
+	public String getIdVenta() {
+		return idVenta;
+	}
+
+	public void setIdVenta(String idVenta) {
+		this.idVenta = idVenta;
+	}
+
 	@Override
 	public String toString(){
 		String usu="";

@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 
 
+import com.terminal.Funciones;
 import com.terminal.Manager;
 import com.terminal.Ticket;
 
@@ -18,6 +19,7 @@ import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Calendar;
 
 public class AltaTicket extends JFrame{
 
@@ -29,9 +31,11 @@ public class AltaTicket extends JFrame{
 	private JButton jBtnAceptar = null;
 	Manager m= new Manager();  //  @jve:decl-index=0:
 	private JTextField jTextField = null;
-	Ticket t = new Ticket();
+	Ticket t = new Ticket();  //  @jve:decl-index=0:
 	private JLabel jLabel = null;
 	private JLabel jLabel1 = null;
+	String calend="";  //  @jve:decl-index=0:
+	int dura=0;
 	
 	
 	public AltaTicket() {
@@ -89,10 +93,13 @@ public class AltaTicket extends JFrame{
 						JOptionPane.showMessageDialog(null, "Ingrese los minutos a contratar","Login", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						
-						t=m.altaTicket(jTxtUsuario.getText().toString(), inicio, jTextField.getText().toString());
+						Calendar cal=Calendar.getInstance();
+						calend=Funciones.calendar2String(cal, true);
+						dura=Integer.parseInt(jTextField.getText().toString());
+						t=m.altaTicket(jTxtUsuario.getText().toString(), calend,dura );
 						if (t.getMatricula()!=null){
-							jLabel1.setText(t.get);
+							
+							jLabel1.setText(t.getIdVenta());
 							
 						}
 						else {
