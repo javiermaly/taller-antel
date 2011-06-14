@@ -3,13 +3,17 @@ package com.imm;
 import java.util.Date;
 
 public class Tarifa {
+	
+	private TarifaDB udb = new TarifaDB();
+	
 	private int valor;
 	private Date fechaInicio;
 	private Date fechaFin;
 	
-	// FIXME terminar la clase
+	//FIXME Obtener el valor de la base.
 	public Tarifa(){
 		this.valor = 5;
+		//this.valor = udb.obtenerTarifa();
 	}
 	
 	public int getValor() {

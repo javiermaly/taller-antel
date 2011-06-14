@@ -8,9 +8,13 @@ public class ManagerAgencia {
 	}
 
 	
-	// FIXME - Terminar el metodo validaAgencia
 	public int validaAgencia(String usu, String pwd){
-		return 5;
+		int id;
+		
+		a = new Agencia(usu, pwd);
+		id = a.validaAgencia(a);
+		
+		return id;
 	}
 	
 	

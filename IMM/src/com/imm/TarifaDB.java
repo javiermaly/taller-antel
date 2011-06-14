@@ -4,18 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-public class UsuarioDB {
+public class TarifaDB {
 	
 	private InitialContext ctx = null;
 	private DataSource ds = null;
 	private Connection cn = null;
 	
-	public UsuarioDB(){
+	public TarifaDB(){
 		try {
 			ctx = new InitialContext();
 		    ds = (DataSource)ctx.lookup("java:MySqlDS");
@@ -38,32 +38,14 @@ public class UsuarioDB {
 		}
 	}
 
-	public boolean existeUsuario(Usuario u){
-		String sql = "select * from usuarios where usuario = ? and password = ?";
+	public int obtenerTarifa() {
+		String sql = "select * from tarifas where usuario = ? and password = ?";
 		PreparedStatement pstmt;
 		ResultSet rs;
-		boolean e = false;
 		
-		try {
-			pstmt = cn.prepareStatement(sql);
-			pstmt.setString(1, u.getUsu());
-			pstmt.setString(2, u.getPwd());
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				e = true;
-			}
-			
-			rs.close();
-			pstmt.close();
-			closeCn();
-			
-		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-		}
-		
-		return e;
+		return 0;
 	}
+	
+	
+
 }

@@ -23,19 +23,19 @@ public class ManagerTicket {
 			valorTicket = tar.getValor() * duracion;
 			t = new Ticket(matricula, inicio, duracion, valorTicket, agVal);
 			
+			ticketRespuesta = t.getId() + delimitador
+			+ t.getMatricula() + delimitador
+			+ Funciones.calendar2String(t.getInicioEstacionamiento(), true) + delimitador
+			+ t.getDuracionEstacionamiento() + delimitador
+			+ Funciones.calendar2String(t.getFecha(), true) + delimitador
+			+ t.getImporte() + delimitador
+			+ t.getIdAnulacion();
 			
 		}else{
-			
+			ticketRespuesta = "Error en loggin de Agencia";
 		}
 		
-		ticketRespuesta = t.getId() + delimitador
-			+ t.getMatricula() + delimitador
-			+ t.getInicioEstacionamiento().toString() + delimitador
-			+ t.getDuracionEstacionamiento() + delimitador
-			+ t.getFecha().toString() + delimitador
-			+ t.getImporte() + delimitador
-			+ t.getIdAnulacion() + delimitador;
-			
+	
 		return ticketRespuesta;
 	}
 }

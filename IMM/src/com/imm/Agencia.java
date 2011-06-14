@@ -19,6 +19,11 @@ public class Agencia {
 		
 	}
 
+	public Agencia(String usu, String pwd) {
+		this.usu = usu;
+		this.pwd = pwd;
+	}
+
 	public Agencia() {
 		// TODO Auto-generated constructor stub
 	}
@@ -59,6 +64,10 @@ public class Agencia {
 	}
 	public void setId(int id){
 		this.id=id;
+	}
+
+	public int validaAgencia(Agencia a) {
+		return adb.validaAgencia(a);
 	}
 	
 
