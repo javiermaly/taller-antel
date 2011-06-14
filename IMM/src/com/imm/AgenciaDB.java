@@ -146,6 +146,35 @@ public class AgenciaDB {
 		return guardada;
 		
 	}
+
+	public int validaAgencia(Agencia a) {
+		String sql = "select * from agencias where usuario = ? and password = ?";
+		PreparedStatement pstmt;
+		ResultSet rs;
+		int id = -1;
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setString(1, a.getUsu());
+			pstmt.setString(2, a.getPwd());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				id = rs.getInt(1);
+			}
+			
+			rs.close();
+			pstmt.close();
+			closeCn();
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		
+		return id;
+	}
 	
 
 }
