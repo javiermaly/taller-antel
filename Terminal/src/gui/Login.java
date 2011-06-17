@@ -97,7 +97,7 @@ public class Login extends JFrame {
 				jBtnAceptar.setText("Aceptar");
 				jBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
-						if (jTxtUsuario.getText().isEmpty()){
+						if (jTxtUsuario.getText().equals("")){
 							JOptionPane.showMessageDialog(null, "Ingrese su usuario","Login", JOptionPane.ERROR_MESSAGE);
 						}
 	

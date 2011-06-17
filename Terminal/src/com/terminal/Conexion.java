@@ -16,11 +16,11 @@ public class Conexion {
 	public String enviar(String accion,String param){
 		String retorno="";
 		try {
-			socket = new Socket("localhost", 8080);
+			socket = new Socket("127.0.0.1", 8085);
 			socket.setSoTimeout(100000);
 			PrintWriter out=new PrintWriter(socket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));			
-			out.print(accion+"#"+param);         			
+			out.print(accion+","+param);         			
 			out.flush();
 			
 			if((retorno=in.readLine())!=null){

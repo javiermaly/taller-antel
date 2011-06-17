@@ -10,13 +10,13 @@ import persistencia.TicketDB;
 
 public class Ticket {
 	
-	private long idIMM;
+	private long idIMM = -1;
 	private String matricula;
 	private Calendar inicioEstacionamiento;
-	private int duracionEstacionamiento;
+	private int duracionEstacionamiento = -1;
 	private Calendar fechaVenta;
-	private int importe;
-	private long idIMMAnulacion;
+	private int importe = -1;
+	private long idIMMAnulacion = -1;
 	private Terminal terminal;
 	
 	private String delimitador = ",";
@@ -26,14 +26,15 @@ public class Ticket {
 	}
 	
 	public Ticket (String mat,Calendar ini,Integer dur){
+/*
 		this.idIMM = 0;
-		this.fechaVenta = Funciones.string2Calendar("2011-05-26 14:55:33", true);
 		this.importe = 5;
 		this.idIMMAnulacion = 0;
 		this.terminal = new Terminal ();
 		this.terminal.setIp("10.0.0.1");
 		this.terminal.setNombre("prueba");
-	
+*/
+		this.fechaVenta = Funciones.string2Calendar("2011-05-26 14:55:33", true);	
 		this.matricula = mat;
 		this.inicioEstacionamiento = ini;
 		this.duracionEstacionamiento = dur;
@@ -49,7 +50,26 @@ public class Ticket {
 		return tdb.guardar(this);
 	}
 	
-	public String toString (){	
+	public String toString (){
+		String s = "";
+		if (this.idIMM != -1) s = s + this.idIMM + delimitador;
+		else s = s + "" + delimitador;
+		if (this.matricula != null) s = s + this.matricula + delimitador;
+		else s = s + "" + delimitador;
+		if (this.inicioEstacionamiento != null) s = s + this.inicioEstacionamiento.toString() + delimitador;
+		else s = s + "" + delimitador;
+		if (this.duracionEstacionamiento != -1) s = s + this.duracionEstacionamiento + delimitador;
+		else s = s + "" + delimitador;
+		if (this.fechaVenta != null) s = s + this.fechaVenta.toString() + delimitador;
+		else s = s + "" + delimitador;
+		if (this.importe != -1) s = s + this.importe + delimitador;
+		else s = s + "" + delimitador;
+		if (this.idIMMAnulacion != -1) s = s + this.idIMMAnulacion + delimitador;
+		else s = s + "" + delimitador;
+		if (this.terminal != null) s = s + this.terminal.toString() + delimitador;
+		else s = s + "" + delimitador;
+		return s;
+/*
 		return this.idIMM + delimitador 
 			+ this.matricula + delimitador
 			+ this.inicioEstacionamiento.toString() + delimitador
@@ -58,6 +78,7 @@ public class Ticket {
 			+ this.importe + delimitador
 			+ this.idIMMAnulacion + delimitador
 			+ this.terminal.toString();
+*/
 	}
 	
 	public long getIdIMM() {

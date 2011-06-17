@@ -66,7 +66,7 @@ public class Ticket {
 	@Override
 	public String toString(){
 		String usu="";
-		usu=matricula+"#"+inicioEstacionamiento+"#"+duracionEstacionamiento;
+		usu=matricula+","+Funciones.calendar2String(inicioEstacionamiento,true)+","+duracionEstacionamiento;
 		return usu;
 	}
 

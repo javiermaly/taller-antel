@@ -53,17 +53,17 @@ public class Hilo extends Thread {
 					System.out.println("Hilo - run - Mensaje recibido: "+mensaje);
 					System.out.println("Hilo - run - Chequeo Terminal");
 					mter = new ManagerTerminal ();
-					ter = mter.getTerminal (socket.getInetAddress().toString());
+					ter = mter.getTerminal (socket.getInetAddress().getHostAddress());
 					if (ter == null){
 						//terminal innexistente
-						System.out.println("Hilo - run - Terminal innexistente: "+socket.getInetAddress().toString());
+						System.out.println("Hilo - run - Terminal innexistente: "+socket.getInetAddress().getHostAddress());
 					}
 					else {
 						//terminal existente
-						System.out.println("Hilo - run - Terminal existente: "+socket.getInetAddress().toString());						
+						System.out.println("Hilo - run - Terminal existente: "+socket.getInetAddress().getHostAddress());						
 						datos = mensaje.split(delimitador); 
 						op = datos [0];
-						if (op == opVenta){
+						if (op.equalsIgnoreCase(opVenta)){
 							// datos supone el siguiente orden para 'venta':
 							//		operacion
 							//		matricula
@@ -72,10 +72,12 @@ public class Hilo extends Thread {
 							mt = new ManagerTicket ();
 							respuesta = mt.venta(datos[1], Funciones.string2Calendar(datos[2], true), Integer.parseInt(datos[3]), ter);
 						}
-						else if (op == opLogin){
+						else if (op.equalsIgnoreCase(opLogin)){
 							mu = new ManagerUsuario ();
-							if (mu.alta(datos[1],datos[2], datos[3], datos[4]))
-								respuesta = "ok";
+							if (mu.login(datos[1],datos[2]))
+								respuesta = "si";
+							else
+								respuesta = "no";
 						}
 					}												
 				}					

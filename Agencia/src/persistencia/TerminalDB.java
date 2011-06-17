@@ -17,7 +17,7 @@ public class TerminalDB {
 		try {
 			if (this.con == null || this.con.isClosed()) {
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "root");
+				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class TerminalDB {
 		try {
 			String strSQL = "SELECT * " +
 						" FROM Terminales " +
-						" WHERE ipTerminal = '" + ip + "'" +
+						" WHERE ip = '" + ip + "'" +
 						"	AND habilitado = true";
 			this.abrirConexion();
 			Statement stmt;
