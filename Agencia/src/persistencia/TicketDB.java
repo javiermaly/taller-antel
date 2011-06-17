@@ -19,7 +19,7 @@ public class TicketDB {
 		try {
 			if (this.con == null || this.con.isClosed()) {
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "root");
+				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

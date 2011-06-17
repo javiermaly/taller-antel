@@ -20,13 +20,19 @@ public class ManagerTicket {
 
 	
 	public String venta (String mat, Calendar ini,int dur, Terminal ter){
+		System.out.println("MT - venta");
+		System.out.println(mat+", "+ini.toString()+", "+dur+", "+ter.toString());
 		String res = "";
 		t = new Ticket(mat,ini,dur);
 //		c = new ConexionIMM ();
+		System.out.println("inicio conexion");
 		t = c.ventaTicket(t,this.getUsuarioAgencia(),this.getPasswordAgencia());
+		System.out.println("fin conexion");
 		if (t.getIdIMM()!=0){ // puede convenir t != null
 			t.setTerminal(ter);
+			System.out.println("ticket completo");
 			if (t.guardar()){
+				System.out.println("ticket guardado");
 				res = t.toString();
 			}
 		}
@@ -68,10 +74,10 @@ public class ManagerTicket {
 	}
 	
 	private String getUsuarioAgencia(){
-		return "usuario";
+		return "us";
 	}
 	
 	private String getPasswordAgencia(){
-		return "password";
+		return "ps";
 	}
 }

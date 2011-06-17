@@ -25,16 +25,17 @@ public class Manager {
 	
 	
 	
-	public Ticket altaTicket(String matricula, String inicio, int duracion){
+	public Ticket altaTicket(String matricula, Calendar inicio, int duracion){
+		
 		Ticket ticket=new Ticket();
 		
 		String tick="";
-		Calendar c=Funciones.string2Calendar(inicio, true);
+		//Calendar c=Funciones.string2Calendar(inicio, true);
+		ticket.setMatricula(matricula);
 		ticket.setDuracionEstacionamiento(duracion);
-		ticket.setDuracionEstacionamiento(duracion);
-		ticket.setInicioEstacionamiento(c);
+		ticket.setInicioEstacionamiento(inicio);
 		
-		tick=con.enviar("alta", ticket.toString());
+		tick=con.enviar("venta", ticket.toString());
 		ticket=formateaRespuesta(tick);
 				
 		
@@ -44,7 +45,7 @@ public class Manager {
 	private Ticket formateaRespuesta(String resp){
 		Ticket t=new Ticket();
 		String [] datos;
-		datos=resp.split("#");
+		datos=resp.split(",");
 		t.setMatricula(datos[1]);
 		
 		return t;

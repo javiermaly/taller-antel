@@ -5,17 +5,31 @@ import java.net.Socket;
 //import java.util.Vector;
 
 public class ServerSocketTCP {
-
+	
+/*
 	public static void main(String[] args) {
 		new ServerSocketTCP().servicio();
 	}
+*/	
+	private static ServerSocketTCP instancia = null;
 	
-	private void servicio(){
+	private ServerSocketTCP (){
+		
+	}
+	
+	static ServerSocketTCP getInstance () {
+		if (instancia == null){
+			instancia = new ServerSocketTCP ();
+		}
+		return instancia;
+	}
+	
+	public void servicio(){
 		//En caso de querer tener en el server socket una referencia a todos los hilos que inicia ("Thread")
 		//Vector<Hilo>children= new Vector<Hilo>();		
 		try {	
 			boolean seguir=true;
-			ServerSocket server = new ServerSocket(8080);	
+			ServerSocket server = new ServerSocket(8085);	
 			System.out.println("ServerSocketTCP - servicio - LISTENER");
 			while (seguir) {
 				try {

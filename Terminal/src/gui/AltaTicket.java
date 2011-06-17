@@ -85,18 +85,18 @@ public class AltaTicket extends JFrame{
 			jBtnAceptar.setText("Aceptar");
 			jBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (jTxtUsuario.getText().isEmpty()){
+					if (jTxtUsuario.getText().equals("")){
 						JOptionPane.showMessageDialog(null, "Deba ingresar la matricula","Matricula", JOptionPane.ERROR_MESSAGE);
 					}
 
-					else if (jTextField.getText().isEmpty()) {
+					else if (jTextField.getText().equals("")) {
 						JOptionPane.showMessageDialog(null, "Ingrese los minutos a contratar","Login", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						Calendar cal=Calendar.getInstance();
-						calend=Funciones.calendar2String(cal, true);
+						//calend=Funciones.calendar2String(cal, true);
 						dura=Integer.parseInt(jTextField.getText().toString());
-						t=m.altaTicket(jTxtUsuario.getText().toString(), calend,dura );
+						t=m.altaTicket(jTxtUsuario.getText().toString(), cal,dura);
 						if (t.getMatricula()!=null){
 							
 							jLabel1.setText(t.getIdVenta());

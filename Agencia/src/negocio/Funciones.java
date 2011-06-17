@@ -40,4 +40,10 @@ public class Funciones {
 		System.out.println(d.toString());
 		return cal;
 	}
+	
+	public static void main(String[] args) {
+		Calendar c;
+		c = string2Calendar("2011-05-31 11:22:33",true);
+		System.out.println(c);
+	}
 }

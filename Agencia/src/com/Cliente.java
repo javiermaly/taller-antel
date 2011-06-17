@@ -13,11 +13,11 @@ public class Cliente {
 	
 	public void send(){
 		try {
-			socket = new Socket("localhost", 8080);
+			socket = new Socket("localhost", 8085);
 			socket.setSoTimeout(100000);
 			PrintWriter out=new PrintWriter(socket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));			
-			out.print("Solicitud de orden venta\n\r");         			
+			out.print("venta,mat01,2011-05-31 11:22:33,30\n\r");         			
 			out.flush();
 			String retorno;
 			if((retorno=in.readLine())!=null){

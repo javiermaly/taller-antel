@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import manager.ManagerUsuario;
+import manager.ManagerTerminal;
 
 /**
  * Servlet implementation class AltaUsuarios
  */
-public class AltaUsuarios extends HttpServlet {
+public class AltaTerminal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public AltaUsuarios() {
+    public AltaTerminal() {
     	
     }
 
@@ -34,22 +34,25 @@ public class AltaUsuarios extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ManagerUsuario mu = null;
-		String usu;
-		String pwd;
+		ManagerTerminal mter = null;
+		int ip1;
+		int ip2;
+		int ip3;
+		int ip4;
 		String nom;
-		String tipo;
 		
-		System.out.println("AltaUsuarios");
+		System.out.println("AltaTerminal");
 		
-		usu = request.getParameter("txtId").toString();
-		pwd = request.getParameter("passClave").toString();
+		ip1 = Integer.parseInt(request.getParameter("txtIp1").toString());
+		ip2 = Integer.parseInt(request.getParameter("txtIp2").toString());
+		ip3 = Integer.parseInt(request.getParameter("txtIp3").toString());
+		ip4 = Integer.parseInt(request.getParameter("txtIp4").toString());		
 		nom = request.getParameter("txtNombre").toString();
-		tipo = request.getParameter("comboTipo").toString();
+
 		//Integer.parseInt(request.getParameter("txtId").toString()), request.getParameter("txtNombre").toString(), Integer.parseInt(request.getParameter("comboCategoria").toString()), Long.parseLong(request.getParameter("txtPrecio").toString()), request.getParameter("txtDescripcion").toString());
-		if (validaFormato (usu,pwd,nom,tipo)) {
-			mu = new ManagerUsuario();
-			mu.alta(usu, pwd, nom, tipo);
+		if (validaFormato (ip1, ip2, ip3, ip4, nom)) {
+			mter = new ManagerTerminal();
+			mter.alta(ip1+"."+ip2+"."+ip3+"."+ip4, nom);
 		}
 		else
 			System.out.println("ERROR de formato en los valores ingresados");
@@ -58,10 +61,10 @@ public class AltaUsuarios extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	private boolean validaFormato (String usuario, String password, String nombre, String tipo){
+	private boolean validaFormato (int ip1, int ip2, int ip3, int ip4, String nombre){
 		boolean valido = false;
 		try {
-			valido = usuario.length()>0 && usuario.length()<= 10 && password.length()>0 && password.length()<= 20 && nombre.length()>0 && nombre.length()<= 255 && tipo.length()<= 45;
+			valido = ip1>0 && ip1<=255 && ip2>=0 && ip2<=255 && ip3>=0 && ip3<=255 && ip4>0 && ip4<255 && nombre.length()>0 && nombre.length()<= 45;
 		} catch (Exception e){
 			valido = false;
 		}
