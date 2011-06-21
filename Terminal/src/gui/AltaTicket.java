@@ -25,12 +25,12 @@ public class AltaTicket extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
-	private JTextField jTxtUsuario = null;
-	private JLabel jLblUsuario = null;
-	private JLabel jLblClave = null;
+	private JTextField jTxtMatricula = null;
+	private JLabel jLblMatricula = null;
+	private JLabel jLblDuracion = null;
 	private JButton jBtnAceptar = null;
 	Manager m= new Manager();  //  @jve:decl-index=0:
-	private JTextField jTextField = null;
+	private JTextField jTxtDuracion = null;
 	Ticket t = new Ticket();  //  @jve:decl-index=0:
 	private JLabel jLabel = null;
 	private JLabel jLabel1 = null;
@@ -66,11 +66,11 @@ public class AltaTicket extends JFrame{
 	 * @return javax.swing.JTextField	
 	 */
 	private JTextField getJTxtUsuario() {
-		if (jTxtUsuario == null) {
-			jTxtUsuario = new JTextField();
-			jTxtUsuario.setBounds(new Rectangle(104, 29, 184, 20));
+		if (jTxtMatricula == null) {
+			jTxtMatricula = new JTextField();
+			jTxtMatricula.setBounds(new Rectangle(104, 29, 184, 20));
 		}
-		return jTxtUsuario;
+		return jTxtMatricula;
 	}
 
 	/**
@@ -85,26 +85,29 @@ public class AltaTicket extends JFrame{
 			jBtnAceptar.setText("Aceptar");
 			jBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (jTxtUsuario.getText().equals("")){
+					if (jTxtMatricula.getText().equals("")){
 						JOptionPane.showMessageDialog(null, "Deba ingresar la matricula","Matricula", JOptionPane.ERROR_MESSAGE);
 					}
 
-					else if (jTextField.getText().equals("")) {
+					else if (jTxtDuracion.getText().equals("")) {
 						JOptionPane.showMessageDialog(null, "Ingrese los minutos a contratar","Login", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						Calendar cal=Calendar.getInstance();
 						//calend=Funciones.calendar2String(cal, true);
-						dura=Integer.parseInt(jTextField.getText().toString());
-						t=m.altaTicket(jTxtUsuario.getText().toString(), cal,dura);
-						if (t.getMatricula()!=null){
+						dura=Integer.parseInt(jTxtDuracion.getText().toString());
+						t=m.altaTicket(jTxtMatricula.getText().toString(), cal,dura);
+						if (t.getFechaVenta()!=null){
 							
 							jLabel1.setText(t.getIdVenta());
 							
+							
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos","Login", JOptionPane.ERROR_MESSAGE);
-							jTxtUsuario.setText("");
+							JOptionPane.showMessageDialog(null, "Hubo un problema con la venta","Venta", JOptionPane.ERROR_MESSAGE);
+							jTxtMatricula.setText("");
+							jTxtDuracion.setText("");
+							
 							
 						}
 					}
@@ -147,19 +150,19 @@ public class AltaTicket extends JFrame{
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(16, 90, 76, 26));
 			jLabel.setText("Id Venta: ");
-			jLblClave = new JLabel();
-			jLblClave.setText("Minutos:");
-			jLblClave.setLocation(new Point(15, 62));
-			jLblClave.setSize(new Dimension(63, 20));
-			jLblUsuario = new JLabel();
-			jLblUsuario.setText("Matricula: ");
-			jLblUsuario.setSize(new Dimension(78, 20));
-			jLblUsuario.setLocation(new Point(14, 30));
+			jLblDuracion = new JLabel();
+			jLblDuracion.setText("Minutos:");
+			jLblDuracion.setLocation(new Point(15, 62));
+			jLblDuracion.setSize(new Dimension(63, 20));
+			jLblMatricula = new JLabel();
+			jLblMatricula.setText("Matricula: ");
+			jLblMatricula.setSize(new Dimension(78, 20));
+			jLblMatricula.setLocation(new Point(14, 30));
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
 			jContentPane.add(getJTxtUsuario(), null);
-			jContentPane.add(jLblUsuario, null);
-			jContentPane.add(jLblClave, null);
+			jContentPane.add(jLblMatricula, null);
+			jContentPane.add(jLblDuracion, null);
 			jContentPane.add(getJBtnAceptar(), null);
 			jContentPane.add(getJTextField(), null);
 			jContentPane.add(jLabel, null);
@@ -176,10 +179,15 @@ public class AltaTicket extends JFrame{
 	 * @return javax.swing.JTextField	
 	 */
 	private JTextField getJTextField() {
-		if (jTextField == null) {
-			jTextField = new JTextField();
-			jTextField.setBounds(new Rectangle(104, 62, 39, 20));
+		if (jTxtDuracion == null) {
+			jTxtDuracion = new JTextField();
+			jTxtDuracion.setBounds(new Rectangle(104, 62, 39, 20));
 		}
-		return jTextField;
+		return jTxtDuracion;
 	}
+	
+//	public static void main(String args[]){
+//		AltaTicket t= new AltaTicket();
+//		t.show();
+//	}
 }  

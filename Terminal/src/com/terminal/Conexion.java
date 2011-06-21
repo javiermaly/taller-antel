@@ -20,7 +20,7 @@ public class Conexion {
 			socket.setSoTimeout(100000);
 			PrintWriter out=new PrintWriter(socket.getOutputStream());
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));			
-			out.print(accion+","+param);         			
+			out.print(accion+","+param+"\n\r");         			
 			out.flush();
 			
 			if((retorno=in.readLine())!=null){
@@ -31,6 +31,18 @@ public class Conexion {
 				return retorno;
 				
 			}
+			
+//			//esto no va
+//			if(accion.equalsIgnoreCase("venta")){
+//				return "1001,NAA1310,2011-06-11 21:50:33,60,2011-06-20 21:50:33,18,0";	
+//			
+//			}			
+//			else{
+//				return "no";
+//				
+//			}
+			
+			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
