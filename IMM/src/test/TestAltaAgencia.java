@@ -28,7 +28,7 @@ public class TestAltaAgencia extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.print("Llamada al Servlet");
-		Agencia a = new Agencia("us5", "ps5", "des5");
+		Agencia a = new Agencia("abitabpepe", "pepe", "pepe");
 		//AgenciaDB adb = new AgenciaDB();
 		//adb.insert();
 		

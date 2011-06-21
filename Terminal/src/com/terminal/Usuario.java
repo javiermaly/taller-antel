@@ -44,7 +44,7 @@ public class Usuario {
 	@Override
 	public String toString(){
 		String retorno="";
-		retorno=this.id+"#"+this.password;
+		retorno=this.id+","+this.password;
 		return retorno;
 	}
 }

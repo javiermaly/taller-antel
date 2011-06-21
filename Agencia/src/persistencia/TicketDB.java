@@ -51,8 +51,8 @@ public class TicketDB {
 			this.abrirConexion();
 			Statement stmt = con.createStatement();
 
-			strSQL = "INSERT INTO Tickets (matricula,inicioEstacionamiento,duracionEstacionamiento,fecha,importe,terminal";
-			strSQLValues = "values ('" + t.getMatricula() + "', '" + Funciones.calendar2String(t.getInicioEstacionamiento(),true) + "', " + t.getDuracionEstacionamiento() + ", '" + Funciones.calendar2String(t.getFechaVenta(),true) + "', " + t.getImporte() + ", '" + t.getTerminal().getIp() + "'";
+			strSQL = "INSERT INTO Tickets (idIMM, matricula,inicioEstacionamiento,duracionEstacionamiento,fecha,importe,terminal";
+			strSQLValues = "values (" + t.getIdIMM() + ", '" + t.getMatricula() + "', '" + Funciones.calendar2String(t.getInicioEstacionamiento(),true) + "', " + t.getDuracionEstacionamiento() + ", '" + Funciones.calendar2String(t.getFechaVenta(),true) + "', " + t.getImporte() + ", '" + t.getTerminal().getIp() + "'";
 			
 			if (t.getIdIMMAnulacion() != 0) {
 				strSQL = strSQL + ", idIMMAnulacion";
@@ -62,8 +62,9 @@ public class TicketDB {
 			strSQL = strSQL + ") ";
 			strSQLValues = strSQLValues + ")";
 			//strSQL = "UPDATE Terminales SET nombre = 'Prueba' WHERE ipTerminal = '10.0.0.1'";
-//			System.out.println(strSQL);
-//			System.out.println(strSQLValues);
+
+			System.out.println(strSQL);
+			System.out.println(strSQLValues);
 			
 			i = stmt.executeUpdate(strSQL + strSQLValues);
 			this.cerrarConexion();

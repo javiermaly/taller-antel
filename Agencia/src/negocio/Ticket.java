@@ -10,13 +10,13 @@ import persistencia.TicketDB;
 
 public class Ticket {
 	
-	private long idIMM = -1;
+	private long idIMM = 0;
 	private String matricula;
 	private Calendar inicioEstacionamiento;
-	private int duracionEstacionamiento = -1;
+	private int duracionEstacionamiento = 0;
 	private Calendar fechaVenta;
-	private int importe = -1;
-	private long idIMMAnulacion = -1;
+	private int importe = 0;
+	private long idIMMAnulacion = 0;
 	private Terminal terminal;
 	
 	private String delimitador = ",";
@@ -51,34 +51,22 @@ public class Ticket {
 	}
 	
 	public String toString (){
-		String s = "";
-		if (this.idIMM != -1) s = s + this.idIMM + delimitador;
+		String s = "";		
+		if (this.idIMM != 0) s = s + this.idIMM + delimitador;
 		else s = s + "" + delimitador;
 		if (this.matricula != null) s = s + this.matricula + delimitador;
 		else s = s + "" + delimitador;
-		if (this.inicioEstacionamiento != null) s = s + this.inicioEstacionamiento.toString() + delimitador;
+		if (this.inicioEstacionamiento != null) s = s + Funciones.calendar2String(this.inicioEstacionamiento, true) + delimitador;
 		else s = s + "" + delimitador;
-		if (this.duracionEstacionamiento != -1) s = s + this.duracionEstacionamiento + delimitador;
+		if (this.duracionEstacionamiento != 0) s = s + this.duracionEstacionamiento + delimitador;
 		else s = s + "" + delimitador;
-		if (this.fechaVenta != null) s = s + this.fechaVenta.toString() + delimitador;
+		if (this.fechaVenta != null) s = s + Funciones.calendar2String(this.fechaVenta, true) + delimitador;
 		else s = s + "" + delimitador;
-		if (this.importe != -1) s = s + this.importe + delimitador;
-		else s = s + "" + delimitador;
-		if (this.idIMMAnulacion != -1) s = s + this.idIMMAnulacion + delimitador;
-		else s = s + "" + delimitador;
-		if (this.terminal != null) s = s + this.terminal.toString() + delimitador;
-		else s = s + "" + delimitador;
+		s = s + this.importe + delimitador;
+		s = s + this.idIMMAnulacion + delimitador;
+		if (this.terminal != null) s = s + this.terminal.toString();
+		else s = s + "";
 		return s;
-/*
-		return this.idIMM + delimitador 
-			+ this.matricula + delimitador
-			+ this.inicioEstacionamiento.toString() + delimitador
-			+ this.duracionEstacionamiento + delimitador
-			+ this.fechaVenta.toString() + delimitador
-			+ this.importe + delimitador
-			+ this.idIMMAnulacion + delimitador
-			+ this.terminal.toString();
-*/
 	}
 	
 	public long getIdIMM() {
@@ -144,6 +132,4 @@ public class Ticket {
 	public void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
 	}
-
-	
 }

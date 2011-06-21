@@ -8,8 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
+  </welcome-file-list>  
   <servlet>
     <servlet-name>FrontControler</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
@@ -19,56 +18,53 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+    <servlet>
+    <servlet-name>TestModificarAgencia</servlet-name>
+    <servlet-class>test.TestModificarAgencia</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestVentaTicket</servlet-name>
+    <servlet-class>test.TestVentaTicket</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestLogin</servlet-name>
+    <servlet-class>test.TestLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestAltaAgencia</servlet-name>
+    <servlet-class>test.TestAltaAgencia</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ws</servlet-name>
+    <servlet-class>com.imm.Ws</servlet-class>
+  </servlet>
+  
+  
   <servlet-mapping>
     <servlet-name>FrontControler</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
-  
-  <servlet>
-    <servlet-name>ws</servlet-name>
-    <servlet-class>com.imm.Ws</servlet-class>
-  </servlet>
   <servlet-mapping>
     <servlet-name>ws</servlet-name>
     <url-pattern>/Ws</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TestAltaAgencia</display-name>
-    <servlet-name>TestAltaAgencia</servlet-name>
-    <servlet-class>test.TestAltaAgencia</servlet-class>
-  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TestAltaAgencia</servlet-name>
     <url-pattern>/TestAltaAgencia</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TestLogin</display-name>
-    <servlet-name>TestLogin</servlet-name>
-    <servlet-class>test.TestLogin</servlet-class>
-  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TestLogin</servlet-name>
     <url-pattern>/TestLogin</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TestVentaTicket</display-name>
-    <servlet-name>TestVentaTicket</servlet-name>
-    <servlet-class>test.TestVentaTicket</servlet-class>
-  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TestVentaTicket</servlet-name>
     <url-pattern>/TestVentaTicket</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TestModificarAgencia</display-name>
-    <servlet-name>TestModificarAgencia</servlet-name>
-    <servlet-class>test.TestModificarAgencia</servlet-class>
-  </servlet>
+
   <servlet-mapping>
     <servlet-name>TestModificarAgencia</servlet-name>
     <url-pattern>/TestModificarAgencia</url-pattern>

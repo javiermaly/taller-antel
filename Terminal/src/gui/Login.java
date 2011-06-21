@@ -106,7 +106,7 @@ public class Login extends JFrame {
 						}
 						else {
 							// Verifico usuario y clave en archivo.
-							if (m.login(jTxtUsuario.getText().toString(), jPwdClave.getPassword().toString())){
+							if (m.login(jTxtUsuario.getText(), jPwdClave.getText())){
 								ocultar();
 								at.setVisible(true);
 								

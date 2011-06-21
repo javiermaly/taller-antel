@@ -22,9 +22,9 @@ public class ServerSocketStarter extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		ServerSocketTCP ss = ServerSocketTCP.getInstance();
-		ss.servicio();
-		this.destroy();
+		ServerSocketTCP ss = new ServerSocketTCP();
+		ss.start();
+		destroy();
 	}
 
 }

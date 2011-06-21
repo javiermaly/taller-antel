@@ -25,6 +25,8 @@ public class Hilo extends Thread {
 	private ManagerTerminal mter;
 	private ManagerTicket mt;
 	private ManagerUsuario mu;
+	
+	private final int idTipoUsuTer = 2;
 
 /*
 	private String texto;
@@ -51,7 +53,7 @@ public class Hilo extends Thread {
 			//while (seguir){
 				if ((mensaje = in.readLine()) != null) {
 					System.out.println("Hilo - run - Mensaje recibido: "+mensaje);
-					System.out.println("Hilo - run - Chequeo Terminal");
+					//System.out.println("Hilo - run - Chequeo Terminal");
 					mter = new ManagerTerminal ();
 					ter = mter.getTerminal (socket.getInetAddress().getHostAddress());
 					if (ter == null){
@@ -60,7 +62,7 @@ public class Hilo extends Thread {
 					}
 					else {
 						//terminal existente
-						System.out.println("Hilo - run - Terminal existente: "+socket.getInetAddress().getHostAddress());						
+						//System.out.println("Hilo - run - Terminal existente: "+socket.getInetAddress().getHostAddress());						
 						datos = mensaje.split(delimitador); 
 						op = datos [0];
 						if (op.equalsIgnoreCase(opVenta)){
@@ -74,7 +76,7 @@ public class Hilo extends Thread {
 						}
 						else if (op.equalsIgnoreCase(opLogin)){
 							mu = new ManagerUsuario ();
-							if (mu.login(datos[1],datos[2]))
+							if (mu.login(datos[1],datos[2],idTipoUsuTer))
 								respuesta = "si";
 							else
 								respuesta = "no";
