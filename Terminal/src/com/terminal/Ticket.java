@@ -9,12 +9,15 @@ public class Ticket {
 	
 	private String matricula;
 	private Calendar inicioEstacionamiento;
+	private Calendar fechaVenta;
 	private int duracionEstacionamiento;
 	private String idVenta;
+	private int idAnulacion;
+	private long importe;
 	
 	
 	
-	
+
 	public Ticket (){
 		
 	}
@@ -63,6 +66,30 @@ public class Ticket {
 		this.idVenta = idVenta;
 	}
 
+	
+	public Calendar getFechaVenta() {
+		return fechaVenta;
+	}
+
+	public void setFechaVenta(Calendar fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
+	public int getIdAnulacion() {
+		return idAnulacion;
+	}
+
+	public void setIdAnulacion(int idAnulacion) {
+		this.idAnulacion = idAnulacion;
+	}
+
+	public long getImporte() {
+		return importe;
+	}
+
+	public void setImporte(long importe) {
+		this.importe = importe;
+	}
 	@Override
 	public String toString(){
 		String usu="";

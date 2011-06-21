@@ -37,7 +37,7 @@ public class Funciones {
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
-		System.out.println(d.toString());
+		//System.out.println(d.toString());
 		return cal;
 	}
 }
