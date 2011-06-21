@@ -14,6 +14,8 @@ public class AgenciaDB {
 	private InitialContext ctx = null;
 	private DataSource ds = null;
 	private Connection cn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 	
 	public AgenciaDB(){
 		try {
@@ -42,8 +44,6 @@ public class AgenciaDB {
 	public int guardar(Agencia a){
 		
 		String sql = "INSERT INTO agencias (usuario, password, descripcion, habilitada) values (?, ?, ?, ?)";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		int id = -1;
 		
 		try {
@@ -68,6 +68,15 @@ public class AgenciaDB {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return id;
@@ -76,8 +85,6 @@ public class AgenciaDB {
 	
 	public Agencia getAgencia (int id){
 		String sql = "select * from agencias where id = ?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		Agencia a= new Agencia();
 		
 		try {
@@ -92,15 +99,20 @@ public class AgenciaDB {
 				a.setPwd(rs.getString(3));
 				a.setUsu(rs.getString(2));
 			}
-			rs.close();
-			pstmt.close();
-			closeCn();
-			
 			
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 			//closeCn();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return a;
@@ -112,7 +124,6 @@ public class AgenciaDB {
 		
 		boolean guardada=false;
 		String sql = "update agencias set descripcion = ?, usuario = ? , password = ? , habilitada = ? where id = ?";
-		PreparedStatement pstmt = null;
 
 		System.out.println(sql);
 		
@@ -131,15 +142,20 @@ public class AgenciaDB {
 			
 			guardada=true;
 			
-			pstmt.close();
-			//closeCn();
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		
 			e.printStackTrace();
 			//closeCn();
+		} finally {
+			try {
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		

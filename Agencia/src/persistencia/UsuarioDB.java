@@ -28,7 +28,7 @@ public class UsuarioDB {
 		try {
 			if (this.con == null || this.con.isClosed()) {
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "root");
+				con = DriverManager.getConnection("jdbc:mysql://localhost/agencia", "root", "");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -86,13 +86,14 @@ public class UsuarioDB {
 	}
 
 	
-	public Usuario getUsuario (String usu){
+	public Usuario getUsuario (String usu, long idtipo){
 		Usuario u = null;
-		int tipo;
+		int idTipo;
 		try {
 			String strSQL = "SELECT * " +
 						" FROM Usuarios " +
-						" WHERE usuario = '" + usu + "'";
+						" WHERE usuario = '" + usu + "'" +
+						" 	AND tipo = " + idtipo;
 			this.abrirConexion();
 			Statement stmt;
 			stmt = con.createStatement();
@@ -100,8 +101,8 @@ public class UsuarioDB {
 			ResultSet r = stmt.executeQuery(strSQL);
 		
 			if (r.next()){
-				tipo = r.getInt("tipo");
-				switch (tipo) {
+				idTipo = r.getInt("tipo");
+				switch (idTipo) {
 					case idTipoUsuAdmin:
 						u = new UsuarioAdministrador(r.getString("usuario"),r.getString("password"),r.getString("nombre"));
 						break;
@@ -118,5 +119,5 @@ public class UsuarioDB {
 			e.printStackTrace();
 		}
 		return u;
-	}
+	}	
 }

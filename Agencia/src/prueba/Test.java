@@ -35,6 +35,7 @@ public class Test {
 			System.out.println("Exception: "+e.getMessage());
 		}				
 	}
+
 //main para insertar en BD terminal
 /*
 	public static void main(String[] args) {
@@ -67,7 +68,7 @@ public class Test {
 		Calendar inicio;
 		int duracion;
 		
-		String delimitador = "#";
+		String delimitador = ",";
 		String op;
 		String opVenta = "venta";
 		String opLogin = "login";
@@ -77,8 +78,11 @@ public class Test {
 		ManagerTicket mt;
 		ManagerUsuario mu;
 		
-		String mensaje = "venta#mat01#2011-05-31 11:22:33#30";
+		//String mensaje = opVenta+delimitador+"mat01"+delimitador+"2011-05-31 11:22:33"+delimitador+"30";
+		String mensaje = opLogin+delimitador+"u1"+delimitador+"p1";
+		
 		String respuesta="";
+		
 		try {						
 			System.out.println("Ejecutando");
 				if (mensaje != null) {
@@ -102,14 +106,16 @@ public class Test {
 							//		matricula
 							//		inicio estacionamiento
 							//		duracion estacionamiento
-							System.out.println("Venta");
+							//System.out.println("Venta");
 							mt = new ManagerTicket ();
 							respuesta = mt.venta(datos[1], Funciones.string2Calendar(datos[2], true), Integer.parseInt(datos[3]), ter);
 						}
 						else if (op.equalsIgnoreCase(opLogin)){
 							mu = new ManagerUsuario ();
-							if (mu.alta(datos[1], datos[2], datos[3], datos[4]))
-								respuesta = "ok";
+//							if (mu.login(datos[1],datos[2]))
+//								respuesta = "si";
+//							else
+//								respuesta = "no";
 						}
 					}												
 				}					

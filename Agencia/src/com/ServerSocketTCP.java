@@ -4,26 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 //import java.util.Vector;
 
-public class ServerSocketTCP {
-	
-/*
-	public static void main(String[] args) {
-		new ServerSocketTCP().servicio();
-	}
-*/	
-	private static ServerSocketTCP instancia = null;
-	
-	private ServerSocketTCP (){
-		
-	}
-	
-	static ServerSocketTCP getInstance () {
-		if (instancia == null){
-			instancia = new ServerSocketTCP ();
-		}
-		return instancia;
-	}
-	
+public class ServerSocketTCP extends Thread{
 	public void servicio(){
 		//En caso de querer tener en el server socket una referencia a todos los hilos que inicia ("Thread")
 		//Vector<Hilo>children= new Vector<Hilo>();		
@@ -34,6 +15,7 @@ public class ServerSocketTCP {
 			while (seguir) {
 				try {
 					Socket socket = server.accept();	
+					System.out.println("ServerSocketTCP - nuevo hilo");
 					socket.setSoTimeout(100000);
 					Hilo hilo=new Hilo(socket);
 					hilo.start();
@@ -43,9 +25,13 @@ public class ServerSocketTCP {
 					System.out.println("ServerSocketTCP - servicio - Exception "+ e1);
 				}
 			}
+			System.out.println("ServerSocketTCP - fin del while");
 		} catch (Exception e) {
 			System.out.println("ServerSocketTCP - servicio - Exception"+ e);
 			e.printStackTrace();
 		}
+	}
+	public void run(){
+		servicio();
 	}
 }

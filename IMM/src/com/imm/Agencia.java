@@ -7,7 +7,7 @@ public class Agencia {
 	private String descripcion;
 	private boolean habilitada;
 	
-	private AgenciaDB adb = new AgenciaDB();
+	//private AgenciaDB adb = new AgenciaDB();
 	
 	public Agencia(String usu, String pwd, String descripcion){
 		this.usu = usu;
@@ -15,7 +15,7 @@ public class Agencia {
 		this.descripcion = descripcion;
 		this.habilitada = true;
 		
-		this.id = adb.guardar(this);
+		new AgenciaDB().guardar(this);
 		
 	}
 
@@ -67,7 +67,7 @@ public class Agencia {
 	}
 
 	public int validaAgencia(Agencia a) {
-		return adb.validaAgencia(a);
+		return new AgenciaDB().validaAgencia(a);
 	}
 	
 

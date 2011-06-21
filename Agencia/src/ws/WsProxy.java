@@ -1,8 +1,8 @@
 package ws;
 
-public class WsProxy implements ws.Ws {
+public class WsProxy implements Ws {
   private String _endpoint = null;
-  private ws.Ws ws = null;
+  private Ws ws = null;
   
   public WsProxy() {
     _initWsProxy();
@@ -15,7 +15,7 @@ public class WsProxy implements ws.Ws {
   
   private void _initWsProxy() {
     try {
-      ws = (new ws.WsServiceLocator()).getWsPort();
+      ws = (new WsServiceLocator()).getWsPort();
       if (ws != null) {
         if (_endpoint != null)
           ((javax.xml.rpc.Stub)ws)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
@@ -38,7 +38,7 @@ public class WsProxy implements ws.Ws {
     
   }
   
-  public ws.Ws getWs() {
+  public Ws getWs() {
     if (ws == null)
       _initWsProxy();
     return ws;

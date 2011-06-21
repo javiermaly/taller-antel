@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Tarifa {
 	
-	private TarifaDB udb = new TarifaDB();
+	private TarifaDB udb;
 	
 	private int valor;
 	private Date fechaInicio;

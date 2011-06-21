@@ -7,7 +7,7 @@
 
 package ws;
 
-public class WsServiceLocator extends org.apache.axis.client.Service implements ws.WsService {
+public class WsServiceLocator extends org.apache.axis.client.Service implements WsService {
 
     public WsServiceLocator() {
     }
@@ -22,7 +22,7 @@ public class WsServiceLocator extends org.apache.axis.client.Service implements 
     }
 
     // Use to get a proxy class for WsPort
-    private java.lang.String WsPort_address = "http://localhost:8080/IMM/Ws";
+    private java.lang.String WsPort_address = "http://127.0.0.1:8080/IMM/Ws";
 
     public java.lang.String getWsPortAddress() {
         return WsPort_address;
@@ -39,7 +39,7 @@ public class WsServiceLocator extends org.apache.axis.client.Service implements 
         WsPortWSDDServiceName = name;
     }
 
-    public ws.Ws getWsPort() throws javax.xml.rpc.ServiceException {
+    public Ws getWsPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(WsPort_address);
@@ -50,9 +50,9 @@ public class WsServiceLocator extends org.apache.axis.client.Service implements 
         return getWsPort(endpoint);
     }
 
-    public ws.Ws getWsPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public Ws getWsPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            ws.WsBindingStub _stub = new ws.WsBindingStub(portAddress, this);
+            WsBindingStub _stub = new WsBindingStub(portAddress, this);
             _stub.setPortName(getWsPortWSDDServiceName());
             return _stub;
         }
@@ -72,8 +72,8 @@ public class WsServiceLocator extends org.apache.axis.client.Service implements 
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (ws.Ws.class.isAssignableFrom(serviceEndpointInterface)) {
-                ws.WsBindingStub _stub = new ws.WsBindingStub(new java.net.URL(WsPort_address), this);
+            if (Ws.class.isAssignableFrom(serviceEndpointInterface)) {
+                WsBindingStub _stub = new WsBindingStub(new java.net.URL(WsPort_address), this);
                 _stub.setPortName(getWsPortWSDDServiceName());
                 return _stub;
             }

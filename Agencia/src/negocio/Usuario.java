@@ -7,10 +7,11 @@ public class Usuario {
 	private String password;
 	private String nombre;
 	
-	public Usuario getUsuario (String id){
-		return this;
-	}
-	
+	public Usuario getUsuario (String usu, Long idTipo){
+		UsuarioDB udb = new UsuarioDB ();
+		return udb.getUsuario(usu, idTipo);
+	}		
+		
 	public boolean guardar (){
 		UsuarioDB udb = new UsuarioDB ();
 		return udb.guardar(this);

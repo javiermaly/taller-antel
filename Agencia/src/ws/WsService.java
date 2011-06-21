@@ -10,7 +10,7 @@ package ws;
 public interface WsService extends javax.xml.rpc.Service {
     public java.lang.String getWsPortAddress();
 
-    public ws.Ws getWsPort() throws javax.xml.rpc.ServiceException;
+    public Ws getWsPort() throws javax.xml.rpc.ServiceException;
 
-    public ws.Ws getWsPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+    public Ws getWsPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }

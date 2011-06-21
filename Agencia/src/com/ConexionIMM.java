@@ -18,13 +18,13 @@ public class ConexionIMM {
 		String res;
 		Ticket tRes = null;
 		WsServiceLocator wssl = new WsServiceLocator();
-		try {
+		try {  
 			Ws ws = wssl.getWsPort();
 			res = ws.venta(usuarioAgencia, passwordAgencia, t.getMatricula(), t.getInicioEstacionamiento(), t.getDuracionEstacionamiento());
 			System.out.println(res);
-			if (res!=""){
+			if (!res.equals("")){
 				tRes = new Ticket ();
-				//String2Ticket (String res)
+				tRes = String2Ticket (res);
 			}
 
 		} catch (ServiceException e) {

@@ -24,9 +24,10 @@ public class ManagerTicket {
 		System.out.println(mat+", "+ini.toString()+", "+dur+", "+ter.toString());
 		String res = "";
 		t = new Ticket(mat,ini,dur);
-//		c = new ConexionIMM ();
 		System.out.println("inicio conexion");
 		t = c.ventaTicket(t,this.getUsuarioAgencia(),this.getPasswordAgencia());
+//PRUEBA
+//		t.setIdIMM(3);
 		System.out.println("fin conexion");
 		if (t.getIdIMM()!=0){ // puede convenir t != null
 			t.setTerminal(ter);
@@ -74,10 +75,10 @@ public class ManagerTicket {
 	}
 	
 	private String getUsuarioAgencia(){
-		return "us";
+		return "abitabpepe";
 	}
 	
 	private String getPasswordAgencia(){
-		return "ps";
+		return "pepe";
 	}
 }
