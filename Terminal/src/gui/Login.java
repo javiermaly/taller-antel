@@ -35,7 +35,7 @@ public class Login extends JFrame {
 		private JLabel jLblClave = null;
 		private JButton jBtnAceptar = null;
 		Manager m= new Manager();
-		AltaTicket at=new AltaTicket();
+		Menu at=new Menu();
 		
 		
 		public Login() throws HeadlessException {
