@@ -69,6 +69,26 @@ public class Ticket {
 		return s;
 	}
 	
+	public Ticket String2Ticket (String s){
+		String [] datos;
+		
+		datos = s.split(delimitador); 
+		
+		if (datos[0].length() == 0) {
+			this.setIdIMM(0);
+			this.setMatricula(datos[1]);
+		} else {
+			this.setIdIMM(Long.parseLong(datos[0]));
+			this.setMatricula(datos[1]);
+			this.setInicioEstacionamiento(Funciones.string2Calendar(datos[2], true));
+			this.setDuracionEstacionamiento(Integer.parseInt(datos[3]));
+			this.setFechaVenta(Funciones.string2Calendar(datos[4], true));
+			this.setImporte(Integer.parseInt(datos[5]));
+			this.setIdIMMAnulacion(Long.parseLong(datos[6]));
+		}
+		return this;
+	}
+	
 	public long getIdIMM() {
 		return idIMM;
 	}
