@@ -16,17 +16,17 @@ public class ConexionIMM {
 // 		Ws (usu,pas,mat,ini,dur)
 */
 		String res;
-		Ticket tRes = null;
 		WsServiceLocator wssl = new WsServiceLocator();
 		try {  
 			Ws ws = wssl.getWsPort();
 			res = ws.venta(usuarioAgencia, passwordAgencia, t.getMatricula(), t.getInicioEstacionamiento(), t.getDuracionEstacionamiento());
 			System.out.println(res);
-			if (!res.equals("")){
-				tRes = new Ticket ();
-				tRes = String2Ticket (res);
+			if (res.equals("")){
+				t.setIdIMM(0);
+				t.setMatricula("WS Timeout");
+			} else {
+				t = t.String2Ticket(res);
 			}
-
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +34,7 @@ public class ConexionIMM {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return tRes;
+		return t;
 	}
 	
 	public Ticket anulaTicket(Ticket t, String usuario, String password){
