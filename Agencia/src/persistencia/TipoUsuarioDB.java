@@ -72,7 +72,7 @@ public class TipoUsuarioDB {
 			stmt = con.createStatement();
 			ResultSet r = stmt.executeQuery(strSQL);
 		
-			if (r.next()){
+			while (r.next()){
 				tu = new TipoUsuario();
 				tu.setId(r.getLong("id"));
 				tu.setDescripcion(r.getString("descripcion"));

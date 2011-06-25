@@ -11,7 +11,7 @@
 </head>
 <body>
 <%
-		Vector <String> v = (Vector <String>) request.getAttribute("vectorTipoUsuario");
+//		Vector <String> v = (Vector <String>) request.getAttribute("vectorTipoUsuario");
 //System.out.println("Productos.jsp - Antes de v==null");
 %>
 		<form name="form1" method="post" action="/Agencia/AltaTerminal">

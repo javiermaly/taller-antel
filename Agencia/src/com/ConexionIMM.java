@@ -15,7 +15,7 @@ public class ConexionIMM {
 /*
 // 		Ws (usu,pas,mat,ini,dur)
 */
-		String res;
+		String res = "";
 		WsServiceLocator wssl = new WsServiceLocator();
 		try {  
 			Ws ws = wssl.getWsPort();
@@ -27,12 +27,15 @@ public class ConexionIMM {
 			} else {
 				t = t.String2Ticket(res);
 			}
+			//t.setIdIMM(35001);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			t.setIdIMM(0);
+			t.setMatricula(e.getMessage());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			t.setIdIMM(0);
+			t.setMatricula(e.getMessage());
 		}
 		return t;
 	}
