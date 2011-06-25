@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="java.util.Enumeration,java.util.Vector;"%> 
+<%@ page import="java.util.Enumeration,java.util.Vector,negocio.TipoUsuario"%> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,8 +12,7 @@
 </head>
 <body>
 <%
-//		Vector <String> v = (Vector <String>) request.getAttribute("vectorTipoUsuario");
-//System.out.println("Productos.jsp - Antes de v==null");
+	Vector <TipoUsuario> v = (Vector <TipoUsuario>) new TipoUsuario ().getTiposUsuarios();
 %>
 		<form name="form1" method="post" action="/Agencia/AltaUsuarios">
 			<table border="0" align ="center">
@@ -37,17 +37,14 @@
 						<select name="comboTipo" size="1">
 								<option value="vacio"></option>
 						<%	
-/*
-							Enumeration <String> e = v.elements();
+							Enumeration <TipoUsuario> e = v.elements();
+							TipoUsuario tu;
 							for (int i=0;e.hasMoreElements();i++){
-								String s = (String) e.nextElement();
-*/
+								tu = (TipoUsuario) e.nextElement();
 						%>
-								
-						 <option value="admin">Administrador</option>
-						 <option value="ter">Terminal</option>
+								<option value=<%=tu.getId()%>><%=tu.getDescripcion()%></option>	
 						<%	
-//						}
+							}
 						%>
 						</select>
 					</td>

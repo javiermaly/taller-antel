@@ -15,6 +15,7 @@ public class ManagerTerminal {
 		ter = new Terminal ();
 		ter.setIp(ip);
 		ter.setNombre(nombre);
+		ter.setHabilitado(true);
 		return ter.guardar();
 	}
 	
