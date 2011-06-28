@@ -1,16 +1,13 @@
 package gui;
 
-import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 
 
-import com.terminal.Funciones;
 import com.terminal.Manager;
 import com.terminal.Ticket;
 
@@ -104,7 +101,7 @@ public class AltaTicket extends JFrame{
 							
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Hubo un problema con la venta","Venta", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Hubo un problema con la venta. Intente mas tarde.","Venta", JOptionPane.ERROR_MESSAGE);
 							jTxtMatricula.setText("");
 							jTxtDuracion.setText("");
 							

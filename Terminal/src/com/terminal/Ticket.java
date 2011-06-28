@@ -12,7 +12,7 @@ public class Ticket {
 	private Calendar fechaVenta;
 	private int duracionEstacionamiento;
 	private String idVenta;
-	private int idAnulacion;
+	private long idAnulacion;
 	private long importe;
 	
 	
@@ -75,12 +75,12 @@ public class Ticket {
 		this.fechaVenta = fechaVenta;
 	}
 
-	public int getIdAnulacion() {
+	public long getIdAnulacion() {
 		return idAnulacion;
 	}
 
-	public void setIdAnulacion(int idAnulacion) {
-		this.idAnulacion = idAnulacion;
+	public void setIdAnulacion(long idTicket) {
+		this.idAnulacion = idTicket;
 	}
 
 	public long getImporte() {
@@ -95,6 +95,10 @@ public class Ticket {
 		String usu="";
 		usu=matricula+","+Funciones.calendar2String(inicioEstacionamiento,true)+","+duracionEstacionamiento;
 		return usu;
+	}
+	
+	public String anula(){
+		return idAnulacion+"";
 	}
 
 	

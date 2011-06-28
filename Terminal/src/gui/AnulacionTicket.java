@@ -20,6 +20,11 @@ import com.terminal.Ticket;
 public class AnulacionTicket extends JFrame{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel jContentPane = null;
 	private JTextField jTxtIdIMM = null;
 	private JLabel jLblIdIMM = null;
@@ -82,24 +87,21 @@ public class AnulacionTicket extends JFrame{
 			jBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (jTxtIdIMM.getText().equals("")){
-						JOptionPane.showMessageDialog(null, "Deba ingresar el id del ticket","IdIMM", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Deba ingresar el id del ticket a anular","IdIMM", JOptionPane.ERROR_MESSAGE);
 					}
 
 					
 					else {
-						Calendar cal=Calendar.getInstance();
-						//calend=Funciones.calendar2String(cal, true);
 						
 						//ACA VA LA ANULACION DEL TICKET
 						//t=m.altaTicket(jTxtMatricula.getText().toString(), cal,dura);
-						if (t.getFechaVenta()!=null){
-							
-							jLabel1.setText(t.getIdVenta());
+						if (m.anulaTicket(Long.parseLong(jTxtIdIMM.getText()))==null){
 							
 							
+													
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Hubo un problema con la venta","Venta", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Hubo un problema con la anulación","Anulación", JOptionPane.ERROR_MESSAGE);
 							jTxtIdIMM.setText("");
 							
 							
