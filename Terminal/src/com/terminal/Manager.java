@@ -1,6 +1,9 @@
 package com.terminal;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeoutException;
+
+import javax.swing.JOptionPane;
 
 public class Manager {
 	Conexion con = new Conexion();
@@ -12,8 +15,13 @@ public class Manager {
 		Usuario u = new Usuario(usu,pwd);
 		
 		
-		resp=con.enviar("login" ,u.toString());
-		
+//		try {
+//			resp=con.enviar("login" ,u.toString());
+//		} catch (TimeoutException e) {
+//			JOptionPane.showMessageDialog(null, "Error en la operacion. Intente mas tarde.","Time Out", JOptionPane.ERROR_MESSAGE);
+//			e.printStackTrace();
+//		}
+		uVal=true;
 		if(resp.equals("no")){
 			uVal=false;
 		}
@@ -34,13 +42,41 @@ public class Manager {
 		ticket.setMatricula(matricula);
 		ticket.setDuracionEstacionamiento(duracion);
 		ticket.setInicioEstacionamiento(inicio);
-		tick=con.enviar("venta", ticket.toString());
+		try {
+			tick=con.enviar("venta", ticket.toString());
+		} catch (TimeoutException e) {
+			JOptionPane.showMessageDialog(null, "Error en la operación, intente mas tarde.","Time Out", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 		ticket=null;
 		ticket=formateaRespuesta(tick);
 				
 		
 		return ticket;
 	}
+	
+public String anulaTicket(long idTicket){
+		
+		Ticket ticket=new Ticket();
+		
+		String tick="";
+		ticket.setIdAnulacion(idTicket); 
+		
+		try {
+			
+			tick=con.enviar("anula", ticket.anula());
+			
+		} catch (TimeoutException e) {
+			JOptionPane.showMessageDialog(null, "Error en la operación, intente mas tarde.","Time Out", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		
+				
+		return tick;
+	}
+
+
+
 	
 	private Ticket formateaRespuesta(String resp){
 		Ticket t=new Ticket();

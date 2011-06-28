@@ -2,11 +2,9 @@ package gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import java.awt.Rectangle;
 import javax.swing.JMenuItem;
 
 public class Menu extends JFrame {
@@ -122,6 +120,7 @@ public class Menu extends JFrame {
 			jMenuItemVenta.setText("Venta");
 			jMenuItemVenta.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
+					setVisible(false);
 					at.setVisible(true);
 					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 				}
@@ -141,6 +140,7 @@ public class Menu extends JFrame {
 			jMenuItemAnulacion.setText("Anulacion");
 			jMenuItemAnulacion.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
+					setVisible(false);
 					ant.setVisible(true);
 					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
 				}

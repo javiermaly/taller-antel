@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeoutException;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -13,7 +16,7 @@ public class Conexion {
 
 	Socket socket;	
 	
-	public String enviar(String accion,String param){
+	public String enviar(String accion,String param) throws TimeoutException{
 		String retorno="";
 		try {
 			socket = new Socket("127.0.0.1", 8085);
@@ -48,6 +51,7 @@ public class Conexion {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		finally{
 			try {
 				socket.close();
