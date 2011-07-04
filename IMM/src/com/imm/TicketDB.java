@@ -1,7 +1,6 @@
 package com.imm;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +43,7 @@ public class TicketDB {
 	}
 	
 	public int guardar(Ticket t){
-		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAgencia) values (?, ?, ?, sysdate(), ?, ?)";
+		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAnulacion, idAgencia) values (?, ?, ?, sysdate(), ?, 0, ?)";
 		int id = -1;
 		
 		System.out.println(t.getInicioEstacionamiento().getTime());
@@ -95,6 +94,82 @@ public class TicketDB {
 		}
 		
 		return id;
+	}
+
+	public Ticket getTicket(int id) {
+		String sql = "select * from tickets where id = ?";
+		Ticket t= new Ticket();
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+					
+			rs = pstmt.executeQuery();
+
+			Calendar fecha;
+
+			while(rs.next()){
+				t.setMatricula(rs.getString(2));
+				fecha = new GregorianCalendar(rs.getDate(3).getYear(), rs.getDate(3).getMonth(), rs.getDate(3).getDay());
+				t.setInicioEstacionamiento(fecha);
+				t.setDuracionEstacionamiento(rs.getInt(4));
+				fecha = new GregorianCalendar(rs.getDate(5).getYear(), rs.getDate(5).getMonth(), rs.getDate(5).getDay());
+				t.setFecha(fecha);
+				t.setImporte(rs.getInt(6));
+				t.setIdAnulacion(rs.getInt(7));
+				t.setIdAgencia(rs.getInt(8));
+			}
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			//closeCn();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return t;
+	}
+
+	public int anular(int id) {
+		int resultado = 0;
+		String sql = "select anulacionTicket(?);";
+		
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+					
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				resultado = rs.getInt(1);
+			}
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			//closeCn();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return resultado;
+		
 	}
 
 }

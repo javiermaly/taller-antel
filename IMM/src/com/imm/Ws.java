@@ -13,4 +13,11 @@ public class Ws {
 		
 		return mt.venta(usu, pwd, matricula, inicio, duracion);
 	}
+	
+	@WebMethod
+	public String anulacion(String usu, String pwd, int id){
+		ManagerTicket mt = new ManagerTicket();
+		
+		return mt.anulacion(usu, pwd, id);
+	}
 }

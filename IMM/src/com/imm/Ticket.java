@@ -2,6 +2,7 @@ package com.imm;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Ticket {
 	private int id;
@@ -13,7 +14,7 @@ public class Ticket {
 	private int idAnulacion;
 	private int idAgencia;
 	
-	private TicketDB tdb = new TicketDB();
+	//private TicketDB tdb = new TicketDB();
 	
 	public Ticket(String matricula, Calendar inicioEstacionamiento,
 			int duracionEstacionamiento, int importe,
@@ -25,9 +26,24 @@ public class Ticket {
 		this.importe = importe;
 		this.idAgencia = idAgencia;
 		
-		this.id = tdb.guardar(this);
+		new TicketDB().guardar(this);
 	}
 	
+	public Ticket(int id) {
+		Ticket t = new TicketDB().getTicket(id);
+		this.setId(id);
+		this.setMatricula(t.getMatricula());
+		this.setInicioEstacionamiento(t.getFecha());
+		this.setDuracionEstacionamiento(t.getDuracionEstacionamiento());
+		this.setFecha(t.getFecha());
+		this.setImporte(t.getImporte());
+		this.setIdAnulacion(t.getIdAnulacion());
+		this.setIdAgencia(t.getIdAgencia());
+	}
+
+	public Ticket() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -75,6 +91,10 @@ public class Ticket {
 	}
 	public void setIdAgencia(int idAgencia) {
 		this.idAgencia = idAgencia;
+	}
+
+	public void anular() {
+		setIdAnulacion(new TicketDB().anular(this.id));
 	}
 	
 }
