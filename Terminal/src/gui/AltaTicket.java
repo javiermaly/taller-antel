@@ -33,6 +33,10 @@ public class AltaTicket extends JFrame{
 	private JLabel jLabel1 = null;
 	String calend="";  //  @jve:decl-index=0:
 	int dura=0;
+        
+        private datechooser.beans.DateChooserCombo dateChooserCombo1;
+        private datechooser.beans.DateChooserDialog dateChooserDialog1;   
+        private datechooser.beans.DateChooserPanel dateChooserPanel1;
 	
 	
 	public AltaTicket() {
@@ -155,6 +159,7 @@ public class AltaTicket extends JFrame{
 			jLblMatricula.setText("Matricula: ");
 			jLblMatricula.setSize(new Dimension(78, 20));
 			jLblMatricula.setLocation(new Point(14, 30));
+                  //      dateChooserCombo1.setLocation(new Point(20, 30));
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
 			jContentPane.add(getJTxtUsuario(), null);
@@ -164,6 +169,7 @@ public class AltaTicket extends JFrame{
 			jContentPane.add(getJTextField(), null);
 			jContentPane.add(jLabel, null);
 			jContentPane.add(jLabel1, null);
+                 //       jContentPane.add(dateChooserCombo1,null);
 		}
 		return jContentPane;
 	}
