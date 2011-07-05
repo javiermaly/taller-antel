@@ -41,6 +41,7 @@
 							Enumeration <TipoUsuario> e = v.elements();
 							for (int i=0;e.hasMoreElements();i++){
 								TipoUsuario tu = (TipoUsuario) e.nextElement();
+								System.out.println(tu.getId()+" - "+tu.getDescripcion());
 						%>
 								<option value=<%=tu.getId()%>><%=tu.getDescripcion()%></option>
 						<%	

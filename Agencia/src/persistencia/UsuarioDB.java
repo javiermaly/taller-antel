@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import negocio.Usuario;
 import negocio.UsuarioAdministrador;
 import negocio.UsuarioTerminal;
+
 
 public class UsuarioDB {
 /*	
@@ -19,8 +21,10 @@ public class UsuarioDB {
 */	
 	private final String tipoUsuAdmin = "UsuarioAdministrador";
 	private final String tipoUsuTer = "UsuarioTerminal";
+	//private final String tipoUsuAg = "UsuarioAgencia";
 	private final int idTipoUsuAdmin = 1;
 	private final int idTipoUsuTer = 2;
+	private final int idTipoUsuAgencia = 3;
 	
 	private Connection con = null;
 	
@@ -85,15 +89,47 @@ public class UsuarioDB {
 		return (i!=0);
 	}
 
+	public boolean bajar (Usuario u){
+ 		String strSQL = "";
+		int i = 0;
+		
+		try {
+			this.abrirConexion();
+			Statement stmt = con.createStatement();
+
+			strSQL = " DELETE " +
+						" FROM Usuarios " +
+						" WHERE usuario = '" + u.getId() + "'";
+			
+			i = stmt.executeUpdate(strSQL);
+			this.cerrarConexion();
+		} catch(SQLException e) {
+			System.out.println("SQLException: "+e.getMessage());
+			e.printStackTrace();
+		} catch(Exception e) {
+			System.out.println("Exception: "+e.getMessage());
+		}
+		return (i!=0);
+	}
 	
-	public Usuario getUsuario (String usu, long idtipo){
+	public Usuario getUsuario (String usu, int idTipo){
 		Usuario u = null;
-		int idTipo;
+		
 		try {
 			String strSQL = "SELECT * " +
-						" FROM Usuarios " +
+						" FROM Usuarios ";
+			
+			if ((usu.length() == 0) && (idTipo != 0)) 
+				strSQL = strSQL +
+						" WHERE tipo = " + idTipo;
+			else if (idTipo != 0)
+				strSQL = strSQL +
 						" WHERE usuario = '" + usu + "'" +
-						" 	AND tipo = " + idtipo;
+						" 	AND tipo = " + idTipo;
+			else
+				strSQL = strSQL +
+					" WHERE usuario = '" + usu + "'";
+
 			this.abrirConexion();
 			Statement stmt;
 			stmt = con.createStatement();
@@ -109,6 +145,12 @@ public class UsuarioDB {
 					case idTipoUsuTer:
 						u = new UsuarioTerminal(r.getString("usuario"),r.getString("password"),r.getString("nombre"));
 						break;
+					case idTipoUsuAgencia:
+						u = new Usuario();
+						u.setId(r.getString("usuario"));
+						u.setPassword(r.getString("password"));
+						u.setNombre(r.getString("nombre"));
+						break;
 					default:
 						u = null;
 						break;
@@ -119,5 +161,51 @@ public class UsuarioDB {
 			e.printStackTrace();
 		}
 		return u;
-	}	
+	}
+	
+	public Vector <Usuario> getUsuarios(int idTipo){
+		Vector <Usuario> v = new Vector <Usuario> ();
+		Usuario u = null;
+
+		try {
+			String strSQL = "SELECT * " +
+				" FROM Usuarios";
+
+			if (idTipo != 0)
+				strSQL = strSQL +
+					" WHERE tipo = " + idTipo;
+					
+			this.abrirConexion();
+			
+			Statement stmt;
+			stmt = con.createStatement();
+			ResultSet r = stmt.executeQuery(strSQL);
+
+			while (r.next()){
+				switch (idTipo) {
+					case 0:
+					case idTipoUsuAgencia:
+						u = new Usuario();
+						u.setId(r.getString("usuario"));
+						u.setPassword(r.getString("password"));
+						u.setNombre(r.getString("nombre"));
+						break;						
+					case idTipoUsuAdmin:
+						u = new UsuarioAdministrador(r.getString("usuario"),r.getString("password"),r.getString("nombre"));
+						break;
+					case idTipoUsuTer:
+						u = new UsuarioTerminal(r.getString("usuario"),r.getString("password"),r.getString("nombre"));
+						break;
+					default:
+						u = null;
+						break;
+				}
+				v.addElement((Usuario)u);
+			}
+			this.cerrarConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return v;
+	}
 }

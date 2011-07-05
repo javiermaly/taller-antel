@@ -80,11 +80,13 @@ public class Ticket {
 		} else {
 			this.setIdIMM(Long.parseLong(datos[0]));
 			this.setMatricula(datos[1]);
-			this.setInicioEstacionamiento(Funciones.string2Calendar(datos[2], true));
-			this.setDuracionEstacionamiento(Integer.parseInt(datos[3]));
-			this.setFechaVenta(Funciones.string2Calendar(datos[4], true));
-			this.setImporte(Integer.parseInt(datos[5]));
-			this.setIdIMMAnulacion(Long.parseLong(datos[6]));
+			if (this.getIdIMM()!=0){
+				this.setInicioEstacionamiento(Funciones.string2Calendar(datos[2], true));
+				this.setDuracionEstacionamiento(Integer.parseInt(datos[3]));
+				this.setFechaVenta(Funciones.string2Calendar(datos[4], true));
+				this.setImporte(Integer.parseInt(datos[5]));
+				this.setIdIMMAnulacion(Long.parseLong(datos[6]));
+			}
 		}
 		return this;
 	}

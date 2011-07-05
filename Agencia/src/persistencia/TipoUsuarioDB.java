@@ -74,7 +74,7 @@ public class TipoUsuarioDB {
 		
 			while (r.next()){
 				tu = new TipoUsuario();
-				tu.setId(r.getLong("id"));
+				tu.setId(r.getInt("id"));
 				tu.setDescripcion(r.getString("descripcion"));
 				v.addElement(tu);
 			}

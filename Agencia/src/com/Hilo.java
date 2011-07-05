@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import excepciones.ExcepcionAnularTicket;
+
 import manager.ManagerTerminal;
 import manager.ManagerTicket;
 import manager.ManagerUsuario;
@@ -19,6 +21,7 @@ public class Hilo extends Thread {
 	private String delimitador = ",";
 	private String op;
 	private String opVenta = "venta";
+	private String opAnula = "anula";
 	private String opLogin = "login";
 	private Terminal ter;
 
@@ -73,6 +76,16 @@ public class Hilo extends Thread {
 							//		duracion estacionamiento
 							mt = new ManagerTicket ();
 							respuesta = mt.venta(datos[1], Funciones.string2Calendar(datos[2], true), Integer.parseInt(datos[3]), ter);
+						}
+						else if (op.equalsIgnoreCase(opAnula)){
+							mt = new ManagerTicket ();
+							try {
+								respuesta = mt.anula(Long.parseLong(datos[1]));
+							} catch (NumberFormatException e) {
+								e.printStackTrace();
+							} catch (ExcepcionAnularTicket e) {
+								e.printStackTrace();
+							}
 						}
 						else if (op.equalsIgnoreCase(opLogin)){
 							mu = new ManagerUsuario ();

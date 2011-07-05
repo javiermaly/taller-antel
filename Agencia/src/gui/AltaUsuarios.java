@@ -15,8 +15,6 @@ import manager.ManagerUsuario;
  */
 public class AltaUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private ManagerUsuario mu;
 	
     /**
      * Default constructor. 
@@ -29,7 +27,7 @@ public class AltaUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -39,32 +37,36 @@ public class AltaUsuarios extends HttpServlet {
 		String usu;
 		String pwd;
 		String nom;
-		Long idTipo;
+		int idTipo;
+		ManagerUsuario mu;
+		RequestDispatcher rd;
 		
 		System.out.println("AltaUsuarios");
 		
 		usu = request.getParameter("txtId").toString();
 		pwd = request.getParameter("passClave").toString();
 		nom = request.getParameter("txtNombre").toString();
-		idTipo = Long.parseLong(request.getParameter("comboTipo").toString());
+		idTipo = Integer.parseInt(request.getParameter("comboTipo").toString());
 		//Integer.parseInt(request.getParameter("txtId").toString()), request.getParameter("txtNombre").toString(), Integer.parseInt(request.getParameter("comboCategoria").toString()), Long.parseLong(request.getParameter("txtPrecio").toString()), request.getParameter("txtDescripcion").toString());
-		if (validaFormato (usu,pwd,nom,idTipo)) {
-
-				mu.alta(usu, pwd, nom, idTipo);
+		if (validaFormato (usu,pwd,nom,idTipo)){
+			mu = new ManagerUsuario();
+			if (mu.alta(usu, pwd, nom, idTipo))
+				rd = request.getRequestDispatcher("/Administrador/Menu.html");
+			else
+				rd = request.getRequestDispatcher("/Administrador/Error.html");
 		}
-		else
+		else {
 			System.out.println("ERROR de formato en los valores ingresados");
-
-		RequestDispatcher rd = request.getRequestDispatcher("/Administrador/Menu.html");
+			rd = request.getRequestDispatcher("/Administrador/Error.html");
+		}
 		rd.forward(request, response);
 	}
 
-	private boolean validaFormato (String usuario, String password, String nombre, Long idTipo){
+	private boolean validaFormato (String usuario, String password, String nombre, int idTipo){
 		boolean valido = false;
 		try {
 			if (usuario.length()>0 && usuario.length()<= 10 && password.length()>0 && password.length()<= 20 && nombre.length()>0 && nombre.length()<= 255 && idTipo > 0)
-				mu = new ManagerUsuario();
-				valido = (mu.getUsuario(usuario,idTipo) == null);
+				valido = (new ManagerUsuario().getUsuario(usuario,idTipo) == null);
 		} catch (Exception e){
 			valido = false;
 		}
