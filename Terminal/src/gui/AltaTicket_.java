@@ -211,9 +211,9 @@ public class AltaTicket_ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error, Matricula incorrecta", "Matricula", JOptionPane.ERROR_MESSAGE);
         } else if (jTxtMinutos.getText().equals("") || Funciones.validarNumero(jTxtMinutos.getText()) == false) {
             JOptionPane.showMessageDialog(null, "Error, ingrese o verifique el tiempo a contratar, deben ser minutos", "Tiempo a contratar", JOptionPane.ERROR_MESSAGE);
-        } else if (jTxtHoraInicio.getText().equals("") || Funciones.validarNumero(jTxtHoraInicio.getText()) == false) {
+        } else if (jTxtHoraInicio.getText().equals("") || Funciones.validarNumero(jTxtHoraInicio.getText()) == false||0>Integer.parseInt(jTxtHoraInicio.getText())||23<Integer.parseInt(jTxtHoraInicio.getText())) {
             JOptionPane.showMessageDialog(null, "Error, ingrese o verifique la Hora de Inicio", "Hora de Inicio", JOptionPane.ERROR_MESSAGE);
-        } else if (jTxtMinInicio.getText().equals("") || Funciones.validarNumero(jTxtMinInicio.getText()) == false) {
+        } else if (jTxtMinInicio.getText().equals("") || Funciones.validarNumero(jTxtMinInicio.getText()) == false||0>Integer.parseInt(jTxtMinInicio.getText())||59<Integer.parseInt(jTxtMinInicio.getText())) {
             JOptionPane.showMessageDialog(null, "Error, ingrese o verifique los minutos de Inicio", "Minutos de Inicio", JOptionPane.ERROR_MESSAGE);
 
 

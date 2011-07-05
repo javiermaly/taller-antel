@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.terminal.Funciones;
 import com.terminal.Manager;
 import com.terminal.Ticket;
 
@@ -35,8 +36,7 @@ public class AnulacionTicket extends JFrame{
 	Ticket t = new Ticket();  //  @jve:decl-index=0:
 	private JLabel jLabel = null;
 	private JLabel jLabel1 = null;
-	String calend="";  //  @jve:decl-index=0:
-	//int dura=0;
+	
 	
 	
 	public AnulacionTicket() {
@@ -86,22 +86,25 @@ public class AnulacionTicket extends JFrame{
 			jBtnAceptar.setText("Aceptar");
 			jBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (jTxtIdIMM.getText().equals("")){
-						JOptionPane.showMessageDialog(null, "Deba ingresar el id del ticket a anular","IdIMM", JOptionPane.ERROR_MESSAGE);
+					
+					if (jTxtIdIMM.getText().equals("")||Funciones.validarNumero(jTxtIdIMM.getText())==false){
+						JOptionPane.showMessageDialog(null, "Ingrese un Id de Ticket correcto","Error - IdIMM", JOptionPane.ERROR_MESSAGE);
 					}
 
 					
 					else {
 						
-						//ACA VA LA ANULACION DEL TICKET
-						//t=m.altaTicket(jTxtMatricula.getText().toString(), cal,dura);
-						if (m.anulaTicket(Long.parseLong(jTxtIdIMM.getText()))==null){
-							
-							
-													
+						
+						String respAnula="";
+						respAnula=m.anulaTicket(Long.parseLong(jTxtIdIMM.getText()));
+						if (respAnula==null){
+							JOptionPane.showMessageDialog(null, "Ticket Anulado","Anulacion", JOptionPane.OK_OPTION);
+							jLabel1.setText(respAnula);
+																
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Hubo un problema con la anulación","Anulación", JOptionPane.ERROR_MESSAGE);
+							//JOptionPane.showMessageDialog(null, "Ticket Anulado","Anulacion", JOptionPane.OK_OPTION);
+							JOptionPane.showMessageDialog(null, "Hubo un problema con la anulacion","Anulacion", JOptionPane.ERROR_MESSAGE);
 							jTxtIdIMM.setText("");
 							
 							
@@ -130,7 +133,7 @@ public class AnulacionTicket extends JFrame{
 	private void initialize() {
 		this.setSize(300, 200);
 		this.setContentPane(getJContentPane());
-		this.setTitle("Anulación de Ticket Estacionamiento");
+		this.setTitle("Anulaciï¿½n de Ticket Estacionamiento");
 	}
 
 	/**
