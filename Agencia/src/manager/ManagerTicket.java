@@ -14,7 +14,7 @@ public class ManagerTicket {
 
 	private Ticket t;
 	private ConexionIMM c = new ConexionIMM ();
-	private Usuario uAg = new Usuario ();
+	private Usuario uAg ;
 	private final int idTipoUsuAgencia = 3;
 /*
  	private String uAg;

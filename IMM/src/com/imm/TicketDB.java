@@ -1,15 +1,19 @@
 package com.imm;
 
 import java.sql.Connection;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 public class TicketDB {
 	
@@ -43,19 +47,15 @@ public class TicketDB {
 	}
 	
 	public int guardar(Ticket t){
-		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAnulacion, idAgencia) values (?, ?, ?, sysdate(), ?, 0, ?)";
+		String sql = "INSERT INTO tickets (matricula, inicioEstacionamiento, duracionEstacionamiento, fecha, importe, idAnulacion, idAgencia) values (?, '" + Funciones.calendar2String(t.getInicioEstacionamiento(), true) + "', ?, sysdate(), ?, 0, ?)";
 		int id = -1;
-		
-		System.out.println(t.getInicioEstacionamiento().getTime());
 		
 		try {
 			pstmt = cn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, t.getMatricula());
-			java.sql.Date date = new java.sql.Date(t.getInicioEstacionamiento().getTimeInMillis());
-			pstmt.setDate(2, date);
-			pstmt.setInt(3, t.getDuracionEstacionamiento());
-			pstmt.setInt(4, t.getImporte());
-			pstmt.setInt(5, t.getIdAgencia());
+			pstmt.setInt(2, t.getDuracionEstacionamiento());
+			pstmt.setInt(3, t.getImporte());
+			pstmt.setInt(4, t.getIdAgencia());
 			
 			pstmt.executeUpdate();
 
@@ -72,7 +72,7 @@ public class TicketDB {
 				
 				if (rs.next()) {
 					t.setId(id);
-					Calendar fecha = new GregorianCalendar(rs.getDate(5).getYear(), rs.getDate(5).getMonth(), rs.getDate(5).getDay());
+					Calendar fecha = new GregorianCalendar(rs.getDate(5).getYear() + 1900, rs.getDate(5).getMonth(), rs.getDate(5).getDay());
 					t.setFecha(fecha);
 			    }
 				

@@ -16,13 +16,13 @@ public class Manager {
         Usuario u = new Usuario(usu, pwd);
 
 
-//		try {
-//			resp=con.enviar("login" ,u.toString());
-//		} catch (TimeoutException e) {
-//			JOptionPane.showMessageDialog(null, "Error en la operacion. Intente mas tarde.","Error", JOptionPane.ERROR_MESSAGE);
-//			e.printStackTrace();
-//		}
-        uVal = true;
+		try {
+			resp=con.enviar("login" ,u.toString());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error en la operacion. Intente mas tarde.","Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+        //uVal = true;
         if (resp.equals("no")) {
             uVal = false;
         }
@@ -85,6 +85,8 @@ public class Manager {
         importe = Integer.parseInt(datos[5]);
         t.setImporte(importe);
         t.setIdAnulacion(Integer.parseInt(datos[6]));
+        
+        System.out.println(t.toString());
 
         return t;
     }
