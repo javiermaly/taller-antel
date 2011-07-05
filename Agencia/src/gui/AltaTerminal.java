@@ -40,6 +40,7 @@ public class AltaTerminal extends HttpServlet {
 		int ip3;
 		int ip4;
 		String nom;
+		RequestDispatcher rd;
 		
 		System.out.println("AltaTerminal");
 		
@@ -52,12 +53,15 @@ public class AltaTerminal extends HttpServlet {
 		//Integer.parseInt(request.getParameter("txtId").toString()), request.getParameter("txtNombre").toString(), Integer.parseInt(request.getParameter("comboCategoria").toString()), Long.parseLong(request.getParameter("txtPrecio").toString()), request.getParameter("txtDescripcion").toString());
 		if (validaFormato (ip1, ip2, ip3, ip4, nom)) {
 			mter = new ManagerTerminal();
-			mter.alta(ip1+"."+ip2+"."+ip3+"."+ip4, nom);
+			if (mter.alta(ip1+"."+ip2+"."+ip3+"."+ip4, nom))
+				rd = request.getRequestDispatcher("/Administrador/Menu.html");
+			else
+				rd = request.getRequestDispatcher("/Administrador/Error.html");
 		}
-		else
+		else {
 			System.out.println("ERROR de formato en los valores ingresados");
-
-		RequestDispatcher rd = request.getRequestDispatcher("/Administrador/Menu.html");
+			rd = request.getRequestDispatcher("/Administrador/Error.html");
+		}
 		rd.forward(request, response);
 	}
 

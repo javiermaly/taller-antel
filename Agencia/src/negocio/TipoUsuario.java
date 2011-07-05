@@ -1,35 +1,29 @@
 package negocio;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import persistencia.TipoUsuarioDB;
-import persistencia.UsuarioDB;
 
 public class TipoUsuario {
-	private long id;
+	private int id;
 	private String descripcion;
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getDescripcion() {
 		return descripcion;
 	}
 	
-	public String getDescripcion(long id) {
-		TipoUsuarioDB tudb = new TipoUsuarioDB ();
-		return tudb.getDescripcion(id);
+	public String getDescripcion(int id) {
+		return new TipoUsuarioDB ().getDescripcion(id);
 	}
 	
 	public Vector <TipoUsuario> getTiposUsuarios(){
-		TipoUsuarioDB tudb = new TipoUsuarioDB ();
-		return tudb.getTiposUsuarios();		
+		return new TipoUsuarioDB ().getTiposUsuarios();		
 	}
 
 	

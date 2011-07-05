@@ -20,6 +20,12 @@ public class ManagerTerminal {
 	}
 	
 	public boolean baja (String ip){
-		return true;
+		ter = new Terminal ().getTerminal(ip);
+		if (ter==null)
+			return false;
+		else {
+			ter.setHabilitado(false);
+			return ter.guardar();
+		}
 	}
 }

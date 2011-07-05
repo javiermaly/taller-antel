@@ -19,26 +19,30 @@ public class ManagerUsuario {
 	private final int idTipoUsuAdmin = 1;
 	private final int idTipoUsuTer = 2;
 	
-	public boolean alta (String usu,String pwd,String nombre,Long idTipo){
+	public boolean alta (String usu,String pwd,String nombre,int idTipo){
 		
-		if (idTipo == idTipoUsuAdmin){
-			u = new UsuarioAdministrador (usu,pwd,nombre);
-			return u.guardar();
-		}
-		else if (idTipo == idTipoUsuTer){
-			u = new UsuarioTerminal (usu,pwd,nombre);
-			return u.guardar();			
-		}
-		else {
-			return false;	
+		switch (idTipo){
+			case idTipoUsuAdmin:
+				u = new UsuarioAdministrador (usu,pwd,nombre);
+				return u.guardar();
+			case idTipoUsuTer:
+				u = new UsuarioTerminal (usu,pwd,nombre);
+				return u.guardar();
+			default:
+				return false;	
 		}
 	}
 	
 	public boolean bajar (String usu){
-		return true;
+		u = new Usuario ().getUsuario(usu, 0);
+		if (u==null)
+			return false;
+		else {
+			return u.bajar();
+		}
 	}
 	
-	public boolean login (String usu, String pwd, long idTipo){
+	public boolean login (String usu, String pwd, int idTipo){
 		boolean res = false;
 		u = this.getUsuario(usu,idTipo);
 //		try {
@@ -57,12 +61,14 @@ public class ManagerUsuario {
 	}
 	
 	public Vector <TipoUsuario> getTiposUsuarios (){
-		TipoUsuario tu = new TipoUsuario();
-		return tu.getTiposUsuarios();
+		return new TipoUsuario().getTiposUsuarios();
 	}
 	
-	public Usuario getUsuario (String usu, Long idTipo){
-		u = new Usuario ();
-		return u.getUsuario(usu, idTipo);
+	public Vector <Usuario> getUsuarios (int idTipo){
+		return new Usuario().getUsuarios(idTipo);
+	}
+	
+	public Usuario getUsuario (String usu, int idTipo){
+		return new Usuario().getUsuario(usu, idTipo);
 	}
 }

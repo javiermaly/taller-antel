@@ -40,22 +40,24 @@ public class TerminalDB {
 
 	
 	public boolean guardar(Terminal t){
-		
- 		String strSQL = "";
-		String strSQLValues = "";
+		Terminal ter = null;
+ 		String strSQL;
 		int i = 0;
 		
 		try {
+			ter = this.getTerminal(t.getIp());
+			if (ter == null){
+				strSQL = "INSERT INTO Terminales (ip, nombre, habilitado)" +
+					"values ('" + t.getIp() + "', '" + t.getNombre() + "', " + t.isHabilitado() + ")";			
+			}
+			else {
+				strSQL = " UPDATE Terminales " +
+					" SET nombre = '" + t.getNombre() + "', habilitado = " + t.isHabilitado() + 
+					" WHERE ip = '" + t.getIp() + "'";
+			}
 			this.abrirConexion();
 			Statement stmt = con.createStatement();
-
-			strSQL = "INSERT INTO Terminales (ip, nombre, habilitado)";
-			strSQLValues = "values ('" + t.getIp() + "', '" + t.getNombre() + "', " + t.isHabilitado() + ")";
-			
-			//strSQL = "UPDATE Terminales SET nombre = 'Prueba' WHERE ipTerminal = '10.0.0.1'";
-//				System.out.println(strSQL);
-//				System.out.println(strSQLValues);
-			i = stmt.executeUpdate(strSQL + strSQLValues);
+			i = stmt.executeUpdate(strSQL);
 			this.cerrarConexion();
 		} catch(SQLException e) {
 			System.out.println("SQLException: "+e.getMessage());

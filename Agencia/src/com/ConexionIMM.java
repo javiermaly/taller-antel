@@ -40,12 +40,31 @@ public class ConexionIMM {
 		return t;
 	}
 	
-	public Ticket anulaTicket(Ticket t, String usuario, String password){
-		/*
-		 * Invoco al  WS y retorno el Ticket
-		 * 
-		 * 
-		 * */
+	public Ticket anulaTicket(Ticket t,String usuarioAgencia,String passwordAgencia){
+		// Invoco al  WS y retorno el Ticket
+		
+		String res = "";
+		WsServiceLocator wssl = new WsServiceLocator();
+		try {  
+			Ws ws = wssl.getWsPort();
+			//res = ws.anulacion(usuarioAgencia, passwordAgencia, t.getIdIMM());
+			System.out.println(res);
+			if (res.equals("")){
+				t.setIdIMM(0);
+				t.setMatricula("WS Timeout");
+			} else {
+				t = t.String2Ticket(res);
+			}
+			//t.setIdIMM(35001);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			t.setIdIMM(0);
+			t.setMatricula(e.getMessage());
+//		} catch (RemoteException e) {
+			e.printStackTrace();
+			t.setIdIMM(0);
+			t.setMatricula(e.getMessage());
+		}
 		return t;
 	}
 	

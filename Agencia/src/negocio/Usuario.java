@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.Vector;
+
 import persistencia.UsuarioDB;
 
 public class Usuario {
@@ -7,18 +9,20 @@ public class Usuario {
 	private String password;
 	private String nombre;
 	
-	public Usuario getUsuario (String usu, Long idTipo){
-		UsuarioDB udb = new UsuarioDB ();
-		return udb.getUsuario(usu, idTipo);
-	}		
+	public Usuario getUsuario (String usu, int idTipo){
+		return new UsuarioDB ().getUsuario(usu, idTipo);
+	}
+	
+	public Vector <Usuario> getUsuarios(int idTipo){
+		return new UsuarioDB ().getUsuarios(idTipo);
+	}
 		
 	public boolean guardar (){
-		UsuarioDB udb = new UsuarioDB ();
-		return udb.guardar(this);
+		return new UsuarioDB().guardar(this);
 	}
 	
 	public boolean bajar (){
-		return true;
+		return new UsuarioDB().bajar(this);
 	}
 
 	public String getId () {
