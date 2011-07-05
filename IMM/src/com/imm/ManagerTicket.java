@@ -31,7 +31,13 @@ public class ManagerTicket {
 			+ t.getIdAnulacion();
 			
 		}else{
-			ticketRespuesta = "Error en loggin de Agencia";
+			ticketRespuesta = "0" + delimitador 
+			+ "Error en loggin de Agencia" + delimitador
+			+ "0000-00-00 00:00:00" + delimitador
+			+ "0" + delimitador
+			+ "0000-00-00 00:00:00" + delimitador
+			+ "0" + delimitador
+			+ "0" + delimitador;
 		}
 		
 	
@@ -62,13 +68,31 @@ public class ManagerTicket {
 					+ t.getImporte() + delimitador
 					+ t.getIdAnulacion();
 				} else {
-					ticketRespuesta = "Error, el ticket ya fue anulado";
+					ticketRespuesta = "0" + delimitador 
+					+ "Error, el ticket ya fue anulado" + delimitador
+					+ "0000-00-00 00:00:00" + delimitador
+					+ "0" + delimitador
+					+ "0000-00-00 00:00:00" + delimitador
+					+ "0" + delimitador
+					+ "0" + delimitador;
 				}
 			} else{
-				ticketRespuesta = "Error, el ticket no fue vendido en la agencia dada";
+				ticketRespuesta = "0" + delimitador 
+				+ "Error, el ticket no fue vendido en la agencia dada" + delimitador
+				+ "0000-00-00 00:00:00" + delimitador
+				+ "0" + delimitador
+				+ "0000-00-00 00:00:00" + delimitador
+				+ "0" + delimitador
+				+ "0" + delimitador;
 			}
 		}else{
-			ticketRespuesta = "Error en loggin de Agencia";
+			ticketRespuesta = "0" + delimitador 
+			+ "Error en loggin de Agencia" + delimitador
+			+ "0000-00-00 00:00:00" + delimitador
+			+ "0" + delimitador
+			+ "0000-00-00 00:00:00" + delimitador
+			+ "0" + delimitador
+			+ "0" + delimitador;
 		}
 		
 	

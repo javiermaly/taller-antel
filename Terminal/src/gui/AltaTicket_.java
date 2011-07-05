@@ -207,6 +207,7 @@ public class AltaTicket_ extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtMatriculaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    	Manager m= new Manager();
         if (jTxtMatricula.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Error, Matricula incorrecta", "Matricula", JOptionPane.ERROR_MESSAGE);
         } else if (jTxtMinutos.getText().equals("") || Funciones.validarNumero(jTxtMinutos.getText()) == false) {
@@ -236,9 +237,9 @@ public class AltaTicket_ extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Hubo un problema con la venta. Intente mas tarde.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            if (t.getFechaVenta() != null) {
+            if (!t.getFechaVenta().equals("")) {
 
-                jLabel1.setText(t.getIdVenta());
+                jLabel6.setText(t.getIdVenta());
 
 
             } else {
@@ -247,6 +248,8 @@ public class AltaTicket_ extends javax.swing.JFrame {
                 jTxtMinutos.setText("");
                 dateChooserCombo1.setCurrent(Calendar.getInstance());
             }
+            repaint();
+            this.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -278,7 +281,7 @@ public class AltaTicket_ extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtMinutos;
     // End of variables declaration//GEN-END:variables
     private Ticket t;
-    private Manager m;
+  
     Calendar cal = null;
     String fecha = "";
     String calend = "";

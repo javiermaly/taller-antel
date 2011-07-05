@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
 public class TestWS {
+	/*
 	public static void main(String arg[]){
 		WsTestServiceLocator WSL = new WsTestServiceLocator();
 		try {
@@ -18,4 +19,5 @@ public class TestWS {
 			e.printStackTrace();
 		}
 	}
+	*/
 }

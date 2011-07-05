@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 
 import javax.xml.rpc.ServiceException;
 
-import ws.Ws;
-import ws.WsServiceLocator;
+import com.imm.Ws;
+import com.imm.WsServiceLocator;
 
 import negocio.Ticket;
 
