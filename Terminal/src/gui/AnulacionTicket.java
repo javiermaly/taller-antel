@@ -97,15 +97,14 @@ public class AnulacionTicket extends JFrame{
 						
 						String respAnula="";
 						respAnula=m.anulaTicket(Long.parseLong(jTxtIdIMM.getText()));
-						if (respAnula==null){
-							JOptionPane.showMessageDialog(null, "Ticket Anulado","Anulacion", JOptionPane.OK_OPTION);
-							jLabel1.setText(respAnula);
+						if (respAnula==null||respAnula.equals("0,")||respAnula.equals("")){
+							JOptionPane.showMessageDialog(null, "Hubo un problema con la anulacion","Anulacion", JOptionPane.ERROR_MESSAGE);
+							jTxtIdIMM.setText("");
 																
 						}
 						else {
-							//JOptionPane.showMessageDialog(null, "Ticket Anulado","Anulacion", JOptionPane.OK_OPTION);
-							JOptionPane.showMessageDialog(null, "Hubo un problema con la anulacion","Anulacion", JOptionPane.ERROR_MESSAGE);
-							jTxtIdIMM.setText("");
+							JOptionPane.showMessageDialog(null, "Ticket Anulado","Anulacion", JOptionPane.OK_OPTION);
+							jLabel1.setText(respAnula);
 							
 							
 						}
