@@ -2,11 +2,9 @@ package com.imm;
 
 import java.sql.Connection;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -70,9 +68,11 @@ public class TicketDB {
 				pstmt.setInt(1, id);
 				rs = pstmt.executeQuery();
 				
-				if (rs.next()) {
+				if (rs.next()) {				
 					t.setId(id);
-					Calendar fecha = new GregorianCalendar(rs.getDate(5).getYear() + 1900, rs.getDate(5).getMonth(), rs.getDate(5).getDay());
+					
+					Calendar fecha = Calendar.getInstance();
+					fecha.setTimeInMillis(rs.getTimestamp("fecha").getTime());
 					t.setFecha(fecha);
 			    }
 				
@@ -106,15 +106,19 @@ public class TicketDB {
 					
 			rs = pstmt.executeQuery();
 
-			Calendar fecha;
+			Calendar fecha = Calendar.getInstance();;
 
 			while(rs.next()){
 				t.setMatricula(rs.getString(2));
-				fecha = new GregorianCalendar(rs.getDate(3).getYear(), rs.getDate(3).getMonth(), rs.getDate(3).getDay());
+				
+				fecha.setTimeInMillis(rs.getDate(3).getTime());
 				t.setInicioEstacionamiento(fecha);
+				
 				t.setDuracionEstacionamiento(rs.getInt(4));
-				fecha = new GregorianCalendar(rs.getDate(5).getYear(), rs.getDate(5).getMonth(), rs.getDate(5).getDay());
+				
+				fecha.setTimeInMillis(rs.getDate(5).getTime());
 				t.setFecha(fecha);
+				
 				t.setImporte(rs.getInt(6));
 				t.setIdAnulacion(rs.getInt(7));
 				t.setIdAgencia(rs.getInt(8));

@@ -37,10 +37,10 @@ public class ManagerTicket {
 			+ "0" + delimitador
 			+ "0000-00-00 00:00:00" + delimitador
 			+ "0" + delimitador
-			+ "0" + delimitador;
+			+ "0";
 		}
 		
-	
+		System.out.println("Respuesta del WS: " + ticketRespuesta);
 		return ticketRespuesta;
 	}
 
@@ -69,21 +69,21 @@ public class ManagerTicket {
 					+ t.getIdAnulacion();
 				} else {
 					ticketRespuesta = "0" + delimitador 
-					+ "Error, el ticket ya fue anulado" + delimitador
+					+ "Error. el ticket ya fue anulado" + delimitador
 					+ "0000-00-00 00:00:00" + delimitador
 					+ "0" + delimitador
 					+ "0000-00-00 00:00:00" + delimitador
 					+ "0" + delimitador
-					+ "0" + delimitador;
+					+ "0";
 				}
 			} else{
 				ticketRespuesta = "0" + delimitador 
-				+ "Error, el ticket no fue vendido en la agencia dada" + delimitador
+				+ "Error. el ticket no fue vendido en la agencia dada" + delimitador
 				+ "0000-00-00 00:00:00" + delimitador
 				+ "0" + delimitador
 				+ "0000-00-00 00:00:00" + delimitador
 				+ "0" + delimitador
-				+ "0" + delimitador;
+				+ "0";
 			}
 		}else{
 			ticketRespuesta = "0" + delimitador 
@@ -92,10 +92,10 @@ public class ManagerTicket {
 			+ "0" + delimitador
 			+ "0000-00-00 00:00:00" + delimitador
 			+ "0" + delimitador
-			+ "0" + delimitador;
+			+ "0";
 		}
 		
-	
+		System.out.println("Respuesta del WS: " + ticketRespuesta);
 		return ticketRespuesta;
 	}
 
