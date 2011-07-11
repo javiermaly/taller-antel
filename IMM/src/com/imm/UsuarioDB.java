@@ -45,10 +45,13 @@ public class UsuarioDB {
 		boolean e = false;
 		
 		try {
+			
 			pstmt = cn.prepareStatement(sql);
 			pstmt.setString(1, u.getUsu());
 			pstmt.setString(2, u.getPwd());
 			
+			System.out.println(sql);
+			System.out.println(pstmt.toString());
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){

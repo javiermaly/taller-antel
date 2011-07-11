@@ -7,7 +7,7 @@
 <title>Alta Agencia</title>
 </head>
 <body>
-	<form action="altaagencia.do" method="post">
+	<form action="AltaAgencia.do" method="post">
 		Usuario: <input type="text" name="usuario" />
 		<br>
 		Password: <input type="password" name="password" />

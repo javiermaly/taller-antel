@@ -8,6 +8,9 @@
 </head>
 <body>
 <a href="altaagencia.jsp">Alta de Agencia</a>
-<a href="">Modificación de agencia</a>
+<br>
+<a href="BajaAgencia.jsp">Baja de Agencia</a>
+<br>
+<a href="">Modificación de Agencia</a>
 </body>
 </html>

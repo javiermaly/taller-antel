@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import javax.naming.InitialContext;
@@ -191,6 +194,36 @@ public class AgenciaDB {
 		
 		return id;
 	}
+	
+	public ResultSet listaAgencias(){
+		String sql = "select * from agencias";
+		ResultSet listaAgencias=null;
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			listaAgencias = pstmt.executeQuery();
+						
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			//closeCn();
+		} finally {
+			try {
+				listaAgencias.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return listaAgencias;
+		
+		
+	}
+	
 	
 
 }

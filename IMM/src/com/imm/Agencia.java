@@ -1,5 +1,11 @@
 package com.imm;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 public class Agencia {
 	private int id;
 	private String usu;
@@ -68,6 +74,12 @@ public class Agencia {
 
 	public int validaAgencia(Agencia a) {
 		return new AgenciaDB().validaAgencia(a);
+	}
+	
+	public ResultSet listaAgencias(){
+		ResultSet listAgencias=null;
+		listAgencias=(ResultSet) new AgenciaDB().listaAgencias();
+		return listAgencias;
 	}
 	
 

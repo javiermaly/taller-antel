@@ -37,7 +37,7 @@
 	    		<forward name="incorrecto" path="/ErrorUsu.jsp"/>
 	    </action>
 		 
-		<action path="/altaAgencia" type="com.imm.ActionAltaAgencia" name="formaltaagencia">
+		<action path="/AltaAgencia" type="com.imm.ActionAltaAgencia" name="formaltaagencia">
 	    		<forward name="correcto" path="/ExitoAgencia.jsp"/>
 	    		
 	    </action>	    
