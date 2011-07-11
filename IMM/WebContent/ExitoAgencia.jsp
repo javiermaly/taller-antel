@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Agencia</title>
 </head>
 <body>
-<a href="altaagencia.jsp">Alta de Agencia</a>
-<a href="">Modificación de agencia</a>
+
+<b>Se ha dado de alta la agencia satisfactoriamente</b>
+<br>
+<br>
+<a href='Menu.jsp'>Volver al Menu</a>
 </body>
 </html>
