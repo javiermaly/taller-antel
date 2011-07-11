@@ -13,6 +13,11 @@
     		name="formloggin"
     		type="com.imm.FormLoggin"> 
     	</form-bean>
+    	
+    	<form-bean 
+    		name="formaltaagencia"
+    		type="com.imm.FormAltaAgencia"> 
+    	</form-bean>
  
     </form-beans>
 
@@ -31,7 +36,11 @@
 	    		<forward name="correcto" path="/Menu.jsp"/>
 	    		<forward name="incorrecto" path="/ErrorUsu.jsp"/>
 	    </action>
-	    
+		 
+		<action path="/altaAgencia" type="com.imm.ActionAltaAgencia" name="formaltaagencia">
+	    		<forward name="correcto" path="/ExitoAgencia.jsp"/>
+	    		
+	    </action>	    
 	</action-mappings>
 
 

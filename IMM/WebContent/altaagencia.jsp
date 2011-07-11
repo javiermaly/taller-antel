@@ -4,10 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Alta Agencia</title>
 </head>
 <body>
-<a href="altaagencia.jsp">Alta de Agencia</a>
-<a href="">Modificación de agencia</a>
+	<form action="altaagencia.do" method="post">
+		Usuario: <input type="text" name="usuario" />
+		<br>
+		Password: <input type="password" name="password" />
+		<br>
+		Nombre: <input type="text" name="nombre" />
+		<br>
+		<input type="submit" value="Enviar"/>
+		<br>
+	</form>
+
 </body>
 </html>
