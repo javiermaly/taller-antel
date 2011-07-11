@@ -16,14 +16,13 @@
 	Seleccione la agencia deseada:   
 	<select name="agencias" size="1" > 
 	<% 
-		ResultSet rs=null;
+		ResultSet rs;
 		rs=Agencia.listaAgencias();
 	%>
 		
 	<%
 		while ( rs.next()) { 
-			out.println("<option value=\"" + rs.getString(0) + "\">" + 
-			rs.getString(1) + "</option>\n"); 
+			out.println("<option value=\"" + rs.getString(0) + "\">");
 		} 
 	%>
 </select> 

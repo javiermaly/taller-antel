@@ -197,24 +197,25 @@ public class AgenciaDB {
 	
 	public ResultSet listaAgencias(){
 		String sql = "select * from agencias";
-		ResultSet listaAgencias=null;
+		ResultSet listaAgencias = null;
 		
 		try {
 			pstmt = cn.prepareStatement(sql);
 			listaAgencias = pstmt.executeQuery();
+			return listaAgencias;
 						
 			
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
+			
 			ex.printStackTrace();
-			//closeCn();
+			
 		} finally {
 			try {
 				listaAgencias.close();
 				pstmt.close();
 				closeCn();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 		}
