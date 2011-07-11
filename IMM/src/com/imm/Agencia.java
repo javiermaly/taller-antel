@@ -77,8 +77,8 @@ public class Agencia {
 	}
 	
 	public ResultSet listaAgencias(){
-		ResultSet listAgencias=null;
-		listAgencias=(ResultSet) new AgenciaDB().listaAgencias();
+		ResultSet listAgencias;
+		listAgencias= new AgenciaDB().listaAgencias();
 		return listAgencias;
 	}
 	
