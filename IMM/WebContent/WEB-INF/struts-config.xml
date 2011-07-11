@@ -18,12 +18,20 @@
     		name="formaltaagencia"
     		type="com.imm.FormAltaAgencia"> 
     	</form-bean>
+    	
+    	<form-bean 
+    		name="formbajaagencia"
+    		type="com.imm.FormBajaAgencia"> 
+    	</form-bean>
+ 
  
     </form-beans>
 
 <!-- =========================================== Action Mapping Definitions -->
 
     <action-mappings>
+	
+	
 	    <action 
 	    	path="/inicio"
 	    	forward="/inicio.jsp"/>
@@ -41,7 +49,13 @@
 	    		<forward name="correcto" path="/ExitoAgencia.jsp"/>
 	    		
 	    </action>	    
+	    
+	    <action path="/BajaAgencia" type="com.imm.ActionBajaAgencia" name="formbajaagencia">
+	    		<forward name="eliminada" path="/ExitoBajaAgencia.jsp"/>
+	    		
+	    </action>	  
+	    
 	</action-mappings>
-
+	
 
 </struts-config>
