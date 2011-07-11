@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Vector;
 
 import javax.sql.DataSource;
 
@@ -26,10 +26,10 @@ public class AgenciaDB {
 		    ds = (DataSource)ctx.lookup("java:MySqlDS");
 		    cn = ds.getConnection();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			
 		}
@@ -39,7 +39,7 @@ public class AgenciaDB {
 		try {
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 	}
@@ -69,7 +69,7 @@ public class AgenciaDB {
 			closeCn();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		} finally {
 			try {
@@ -77,7 +77,7 @@ public class AgenciaDB {
 				pstmt.close();
 				closeCn();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 		}
@@ -104,7 +104,7 @@ public class AgenciaDB {
 			}
 			
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
+		
 			ex.printStackTrace();
 			//closeCn();
 		} finally {
@@ -113,7 +113,7 @@ public class AgenciaDB {
 				pstmt.close();
 				closeCn();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 		}
@@ -147,7 +147,7 @@ public class AgenciaDB {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 		
 			e.printStackTrace();
 			//closeCn();
@@ -156,7 +156,7 @@ public class AgenciaDB {
 				pstmt.close();
 				closeCn();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
@@ -188,21 +188,32 @@ public class AgenciaDB {
 			closeCn();
 			
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
+			
 			ex.printStackTrace();
 		}
 		
 		return id;
 	}
 	
-	public ResultSet listaAgencias(){
-		String sql = "select * from agencias";
+	public Vector<Agencia> listaAgencias(){
+		String sql = "select * from agencias where habilitada=true";
 		ResultSet listaAgencias = null;
+		Vector<Agencia> vecAgencias=new Vector<Agencia>();
+		
 		
 		try {
 			pstmt = cn.prepareStatement(sql);
 			listaAgencias = pstmt.executeQuery();
-			return listaAgencias;
+			
+			while(listaAgencias.next()){
+				Agencia a = new Agencia();
+				a.setId(Integer.parseInt(listaAgencias.getString("id")));
+				a.setdescripcion(listaAgencias.getString("descripcion"));
+				a.setUsu(listaAgencias.getString("usuario"));
+				a.setPwd(listaAgencias.getString("password"));
+				a.setHabilitada(listaAgencias.getBoolean("habilitada"));
+				vecAgencias.add(a);
+			}
 						
 			
 		} catch (SQLException ex) {
@@ -220,10 +231,43 @@ public class AgenciaDB {
 			}
 		}
 		
-		return listaAgencias;
+		return vecAgencias;
 		
 		
 	}
+	
+	public boolean bajarAgencia(Agencia a){
+		boolean retorno=false;
+		String sql = "update agencias set habilitada='false' where id=? ";
+	
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			pstmt.setInt(1, a.getId());
+						
+			if(pstmt.executeUpdate()>0)
+				retorno=true;
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			}
+		}
+		return retorno;
+		
+		
+	}
+	
 	
 	
 

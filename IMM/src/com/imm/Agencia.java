@@ -3,6 +3,7 @@ package com.imm;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 
 
@@ -76,10 +77,10 @@ public class Agencia {
 		return new AgenciaDB().validaAgencia(a);
 	}
 	
-	public ResultSet listaAgencias(){
-		ResultSet listAgencias;
-		listAgencias= new AgenciaDB().listaAgencias();
-		return listAgencias;
+	public Vector<Agencia> listaAgencias(){
+		Vector<Agencia> vecAgencias;
+		vecAgencias= new AgenciaDB().listaAgencias();
+		return vecAgencias;
 	}
 	
 

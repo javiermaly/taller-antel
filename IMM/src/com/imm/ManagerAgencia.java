@@ -38,6 +38,18 @@ public class ManagerAgencia {
 			
 		return modificada;
 		
+	}
+	
+	public boolean eliminarAgencia(int id){
+		boolean eliminada=false;
+		AgenciaDB adb=new AgenciaDB();
+		Agencia a = new Agencia();
+		//a= adb.getAgencia(id);
+		//adb=new AgenciaDB();
+		a.setId(id);
+		if(adb.bajarAgencia(a))
+			eliminada=true;
 		
+		return eliminada;
 	}
 }
