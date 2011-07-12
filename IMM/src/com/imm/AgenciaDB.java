@@ -97,16 +97,17 @@ public class AgenciaDB {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				a.setdescripcion(rs.getString(4));
-				a.setHabilitada(rs.getBoolean(5));
-				a.setPwd(rs.getString(3));
-				a.setUsu(rs.getString(2));
+				a.setdescripcion(rs.getString("descripcion"));
+				a.setHabilitada(rs.getBoolean("habilitada"));
+				a.setPwd(rs.getString("password"));
+				a.setUsu(rs.getString("usuario"));
+				a.setId(rs.getInt("id"));
 			}
 			
 		} catch (SQLException ex) {
 		
 			ex.printStackTrace();
-			//closeCn();
+			closeCn();
 		} finally {
 			try {
 				rs.close();
@@ -115,6 +116,7 @@ public class AgenciaDB {
 			} catch (SQLException e) {
 			
 				e.printStackTrace();
+				closeCn();
 			}
 		}
 		
@@ -238,8 +240,9 @@ public class AgenciaDB {
 	
 	public boolean bajarAgencia(Agencia a){
 		boolean retorno=false;
-		String sql = "update agencias set habilitada='false' where id=? ";
+		String sql = "update agencias set habilitada=false where id=? ";
 	
+		System.out.println("agencia: "+a.toString());
 		
 		try {
 			pstmt = cn.prepareStatement(sql);
@@ -252,14 +255,16 @@ public class AgenciaDB {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			
 		} finally {
 			try {
-				rs.close();
+				
 				pstmt.close();
 				closeCn();
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
+				closeCn();
 				
 			}
 		}
