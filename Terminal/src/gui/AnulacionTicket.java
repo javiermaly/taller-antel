@@ -132,7 +132,7 @@ public class AnulacionTicket extends JFrame{
 	private void initialize() {
 		this.setSize(300, 200);
 		this.setContentPane(getJContentPane());
-		this.setTitle("Anulaci�n de Ticket Estacionamiento");
+		this.setTitle("Anulacion de Ticket Estacionamiento");
 	}
 
 	/**

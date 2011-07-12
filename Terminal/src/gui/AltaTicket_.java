@@ -56,7 +56,7 @@ public class AltaTicket_ extends javax.swing.JFrame {
         setTitle("Venta Ticket Estacionamiento");
         setResizable(false);
 
-        jLabel1.setText("Matrícula:");
+        jLabel1.setText("Matricula:");
 
         jTxtMatricula.setName("jTxtMatricula"); // NOI18N
         jTxtMatricula.addActionListener(new java.awt.event.ActionListener() {
