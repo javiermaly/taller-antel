@@ -21,8 +21,10 @@ public class ActionModificarAgencia extends Action {
 			
 			System.out.println(formulario.getId());
 			
-			if(ma.modificarAgencia(5, formulario.getDescripcion(), formulario.getUsuario(),formulario.getPassword(),formulario.isHabilitada()))
+			if(ma.modificarAgencia(formulario.getId(), formulario.getDescripcion(), formulario.getUsuario(),formulario.getPassword(),formulario.isHabilitada()))
 				retValue = mapping.findForward("agenciaModificada");
+			else
+				retValue = mapping.findForward("agenciaNoModificada");
 			
 			return retValue;
 		} 

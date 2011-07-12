@@ -20,6 +20,8 @@ public class ActionBajaAgencia extends Action {
 		if(ma.eliminarAgencia(formulario.getId()))
 			
 			retValue = mapping.findForward("eliminada");
+		else
+			retValue = mapping.findForward("noEliminada");
 		
 		return retValue;
 	}
