@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Agencia</display-name>
+  <servlet>
+    <servlet-name>ServerSocketStarter</servlet-name>
+    <servlet-class>com.ServerSocketStarter</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>AltaUsuarios</servlet-name>
+    <servlet-class>gui.AltaUsuarios</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AltaTerminal</servlet-name>
+    <servlet-class>gui.AltaTerminal</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>BajaUsuarios</servlet-name>
+    <servlet-class>gui.BajaUsuarios</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BajaTerminal</servlet-name>
+    <servlet-class>gui.BajaTerminal</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>gui.Login</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>ServerSocketStarter</servlet-name>
+    <url-pattern>/ServerSocketStarter</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AltaUsuarios</servlet-name>
+    <url-pattern>/AltaUsuarios</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>AltaTerminal</servlet-name>
+    <url-pattern>/AltaTerminal</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BajaUsuarios</servlet-name>
+    <url-pattern>/BajaUsuarios</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>BajaTerminal</servlet-name>
+    <url-pattern>/BajaTerminal</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
