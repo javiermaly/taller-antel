@@ -143,16 +143,15 @@ public class AgenciaDB {
 				
 			System.out.println("EJECUTO EL UPDATE");
 			
-			pstmt.executeUpdate();
-			
-			guardada=true;
+			if(pstmt.executeUpdate()>0)
+				guardada=true;
 			
 			
 		} catch (SQLException e) {
 			
 		
 			e.printStackTrace();
-			//closeCn();
+			closeCn();
 		} finally {
 			try {
 				pstmt.close();
@@ -199,6 +198,46 @@ public class AgenciaDB {
 	
 	public Vector<Agencia> listaAgencias(){
 		String sql = "select * from agencias where habilitada=true";
+		ResultSet listaAgencias = null;
+		Vector<Agencia> vecAgencias=new Vector<Agencia>();
+		
+		
+		try {
+			pstmt = cn.prepareStatement(sql);
+			listaAgencias = pstmt.executeQuery();
+			
+			while(listaAgencias.next()){
+				Agencia a = new Agencia();
+				a.setId(Integer.parseInt(listaAgencias.getString("id")));
+				a.setdescripcion(listaAgencias.getString("descripcion"));
+				a.setUsu(listaAgencias.getString("usuario"));
+				a.setPwd(listaAgencias.getString("password"));
+				a.setHabilitada(listaAgencias.getBoolean("habilitada"));
+				vecAgencias.add(a);
+			}
+						
+			
+		} catch (SQLException ex) {
+			
+			ex.printStackTrace();
+			
+		} finally {
+			try {
+				listaAgencias.close();
+				pstmt.close();
+				closeCn();
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		
+		return vecAgencias;
+		
+		
+	}
+	public Vector<Agencia> listaTodasAgencias(){
+		String sql = "select * from agencias";
 		ResultSet listaAgencias = null;
 		Vector<Agencia> vecAgencias=new Vector<Agencia>();
 		
