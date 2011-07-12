@@ -83,14 +83,6 @@ public class Agencia {
 		return vecAgencias;
 	}
 	
-	public Agencia getAgencia(int id){
-		Agencia a = new Agencia();
-		AgenciaDB adb= new AgenciaDB();
-		a=adb.getAgencia(id);
-		return a;
-		
-	}
-	
 
 	
 }

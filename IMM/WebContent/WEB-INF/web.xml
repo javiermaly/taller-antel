@@ -62,5 +62,23 @@
     <servlet-name>TestModificarAgencia</servlet-name>
     <url-pattern>/TestModificarAgencia</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>Pepe</display-name>
+    <servlet-name>Pepe</servlet-name>
+    <servlet-class>Pepe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Pepe</servlet-name>
+    <url-pattern>/Pepe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>HelloWorld</display-name>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>org.jboss.samples.webservices.HelloWorld</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name>
+    <url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
 </web-app>
