@@ -15,12 +15,16 @@ public class ActionModificarAgencia extends Action {
 			ActionForward retValue = null;
 			FormModificarAgencia formulario = (FormModificarAgencia) form;
 			
+			
 			ManagerAgencia ma= new ManagerAgencia();
 			
-			if(ma.modificarAgencia(formulario.getId(), formulario.getDescripcion(), formulario.getUsuario(),formulario.getPassword()))
+			
+			System.out.println(formulario.getId());
+			
+			if(ma.modificarAgencia(5, formulario.getDescripcion(), formulario.getUsuario(),formulario.getPassword(),formulario.isHabilitada()))
 				retValue = mapping.findForward("agenciaModificada");
 			
 			return retValue;
-		}
+		} 
 
 }

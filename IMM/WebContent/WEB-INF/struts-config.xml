@@ -25,8 +25,8 @@
     	</form-bean>
     	
     	<form-bean 
-    		name="formmodificaagencia"
-    		type="com.imm.FormModificaAgencia"> 
+    		name="formmodificaragencia"
+    		type="com.imm.FormModificarAgencia"> 
     	</form-bean>
  
  
@@ -60,7 +60,7 @@
 	    		
 	    </action>	 
 	    
-	    <action path="/ModificaAgencia" type="com.imm.ActionModificaAgencia" name="formmodificaagencia">
+	    <action path="/modificaAgencia" type="com.imm.ActionModificarAgencia" name="formmodificaragencia">
 	    		<forward name="agenciaModificada" path="/ExitoModificaAgencia.jsp"/>
 	    		
 	    </action>	 
