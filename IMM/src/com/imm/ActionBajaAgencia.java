@@ -16,7 +16,9 @@ public class ActionBajaAgencia extends Action {
 		
 		ManagerAgencia ma= new ManagerAgencia();
 		
+		System.out.println(formulario.getId());
 		if(ma.eliminarAgencia(formulario.getId()))
+			
 			retValue = mapping.findForward("eliminada");
 		
 		return retValue;

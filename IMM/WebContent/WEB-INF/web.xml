@@ -8,17 +8,17 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>  
+  </welcome-file-list>
   <servlet>
     <servlet-name>FrontControler</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
     <init-param>
-    	<param-name>config</param-name>
-    	<param-value>/WEB-INF/struts-config.xml</param-value>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>TestModificarAgencia</servlet-name>
     <servlet-class>test.TestModificarAgencia</servlet-class>
   </servlet>
@@ -38,35 +38,47 @@
     <servlet-name>ws</servlet-name>
     <servlet-class>com.imm.Ws</servlet-class>
   </servlet>
-  
-  
   <servlet-mapping>
     <servlet-name>FrontControler</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>ws</servlet-name>
     <url-pattern>/Ws</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>TestAltaAgencia</servlet-name>
     <url-pattern>/TestAltaAgencia</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>TestLogin</servlet-name>
     <url-pattern>/TestLogin</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>TestVentaTicket</servlet-name>
     <url-pattern>/TestVentaTicket</url-pattern>
   </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>TestModificarAgencia</servlet-name>
     <url-pattern>/TestModificarAgencia</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Pepe</display-name>
+    <servlet-name>Pepe</servlet-name>
+    <servlet-class>Pepe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Pepe</servlet-name>
+    <url-pattern>/Pepe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>HelloWorld</display-name>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>org.jboss.samples.webservices.HelloWorld</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name>
+    <url-pattern>/HelloWorld</url-pattern>
   </servlet-mapping>
 </web-app>

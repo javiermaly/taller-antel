@@ -41,12 +41,16 @@ public class ManagerAgencia {
 	}
 	
 	public boolean eliminarAgencia(int id){
+		
 		boolean eliminada=false;
 		AgenciaDB adb=new AgenciaDB();
 		Agencia a = new Agencia();
-		//a= adb.getAgencia(id);
-		//adb=new AgenciaDB();
+		
+		a= adb.getAgencia(id);
 		a.setId(id);
+		
+		adb=new AgenciaDB();
+				
 		if(adb.bajarAgencia(a))
 			eliminada=true;
 		
