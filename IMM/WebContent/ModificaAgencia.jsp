@@ -14,7 +14,7 @@ Seleccione la agencia deseada:
 	<select name="id" size="1">
 		<option value="0"></option>
 		<%	
-			Vector <Agencia> v  = Agencia.listaAgencias();
+			Vector <Agencia> v  = Agencia.listaTodasAgencias();
 			Enumeration <Agencia> e = v.elements();
 			Agencia ag=null;
 			for (int i=0;e.hasMoreElements();i++){

@@ -3,6 +3,10 @@ package com.imm;
 import org.apache.struts.action.ActionForm;
 
 public class FormModificarAgencia extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int id;
 	String usuario;
 	String password;

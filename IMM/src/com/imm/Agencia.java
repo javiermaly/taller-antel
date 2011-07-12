@@ -82,6 +82,22 @@ public class Agencia {
 		vecAgencias= new AgenciaDB().listaAgencias();
 		return vecAgencias;
 	}
+	public Vector<Agencia> listaTodasAgencias(){
+		Vector<Agencia> vecAgencias;
+		vecAgencias= new AgenciaDB().listaTodasAgencias();
+		return vecAgencias;
+	}
+	
+	
+	public Agencia getAgencia(int id){
+		Agencia a = new Agencia();
+		AgenciaDB adb= new AgenciaDB();
+		
+		a=adb.getAgencia(id);
+		
+		return a;
+		
+	}
 	
 
 	

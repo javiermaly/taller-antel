@@ -19,7 +19,7 @@ public class ManagerAgencia {
 	
 	
 	
-	public boolean modificarAgencia(int id, String nom, String usu, String pwd){
+	public boolean modificarAgencia(int id, String nom, String usu, String pwd, boolean hab){
 		boolean modificada=false;
 		
 		Agencia a=new Agencia();
@@ -30,6 +30,7 @@ public class ManagerAgencia {
 		a.setdescripcion(nom);
 		a.setUsu(usu);
 		a.setPwd(pwd);
+		a.setHabilitada(hab);
 		
 		adb=new AgenciaDB();
 		if(adb.guardarAg(a)){
