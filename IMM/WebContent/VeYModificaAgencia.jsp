@@ -18,7 +18,7 @@
 			ag=Agencias.getAgencia(Integer.parseInt(request.getParameter("id")));
 			
 		%>
-		Id: <input type="text" name="id" disabled="disabled" value=<%= ag.getId() %>>
+		<input type="hidden" name="id" value="<%= ag.getId() %>">
 		<br>
 		Descripcion: <input type="text" name="descripcion" value=<%=ag.getdescripcion() %>>
 		<br>

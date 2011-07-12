@@ -138,7 +138,7 @@ public class AgenciaDB {
 			pstmt.setString(1, a.getdescripcion());
 			pstmt.setString(2, a.getUsu());
 			pstmt.setString(3, a.getPwd());
-			pstmt.setInt(4, 1);
+			pstmt.setBoolean(4, a.isHabilitada());
 			pstmt.setInt(5, a.getId());
 				
 			System.out.println("EJECUTO EL UPDATE");
