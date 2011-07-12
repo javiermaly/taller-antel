@@ -143,16 +143,15 @@ public class AgenciaDB {
 				
 			System.out.println("EJECUTO EL UPDATE");
 			
-			pstmt.executeUpdate();
-			
-			guardada=true;
+			if(pstmt.executeUpdate()>0)
+				guardada=true;
 			
 			
 		} catch (SQLException e) {
 			
 		
 			e.printStackTrace();
-			//closeCn();
+			closeCn();
 		} finally {
 			try {
 				pstmt.close();

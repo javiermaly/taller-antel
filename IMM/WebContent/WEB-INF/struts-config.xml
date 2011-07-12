@@ -23,6 +23,11 @@
     		name="formbajaagencia"
     		type="com.imm.FormBajaAgencia"> 
     	</form-bean>
+    	
+    	<form-bean 
+    		name="formmodificaagencia"
+    		type="com.imm.FormModificaAgencia"> 
+    	</form-bean>
  
  
     </form-beans>
@@ -53,7 +58,12 @@
 	    <action path="/BajaAgencia" type="com.imm.ActionBajaAgencia" name="formbajaagencia">
 	    		<forward name="eliminada" path="/ExitoBajaAgencia.jsp"/>
 	    		
-	    </action>	  
+	    </action>	 
+	    
+	    <action path="/ModificaAgencia" type="com.imm.ActionModificaAgencia" name="formmodificaagencia">
+	    		<forward name="agenciaModificada" path="/ExitoModificaAgencia.jsp"/>
+	    		
+	    </action>	 
 	    
 	</action-mappings>
 	
