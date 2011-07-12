@@ -17,9 +17,12 @@ public class ActionModificarAgencia extends Action {
 			
 			
 			ManagerAgencia ma= new ManagerAgencia();
+			boolean hab;
+			
+			System.out.println("ID: "+formulario.getId());
+			System.out.println("habilitada????: "+formulario.isHabilitada());
 			
 			
-			System.out.println(formulario.getId());
 			
 			if(ma.modificarAgencia(formulario.getId(), formulario.getDescripcion(), formulario.getUsuario(),formulario.getPassword(),formulario.isHabilitada()))
 				retValue = mapping.findForward("agenciaModificada");
