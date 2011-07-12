@@ -57,11 +57,14 @@
 	    
 	    <action path="/BajaAgencia" type="com.imm.ActionBajaAgencia" name="formbajaagencia">
 	    		<forward name="eliminada" path="/ExitoBajaAgencia.jsp"/>
-	    		
+	    		<forward name="noEliminada" path="/NoEliminada.jsp"/>
 	    </action>	 
 	    
 	    <action path="/modificaAgencia" type="com.imm.ActionModificarAgencia" name="formmodificaragencia">
 	    		<forward name="agenciaModificada" path="/ExitoModificaAgencia.jsp"/>
+	    		<forward name="agenciaNoModificada" path="/ErrorModificaAgencia.jsp"/>
+	    		
+	    		
 	    		
 	    </action>	 
 	    
